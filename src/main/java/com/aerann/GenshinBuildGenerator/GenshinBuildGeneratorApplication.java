@@ -1,16 +1,24 @@
 package com.aerann.GenshinBuildGenerator;
 
 import com.aerann.GenshinBuildGenerator.metier.ArtifactInvKam;
+import com.aerann.GenshinBuildGenerator.metier.GenshinData;
 import com.aerann.GenshinBuildGenerator.repositories.ArtefactRepository;
 import com.aerann.GenshinBuildGenerator.services.TestService;
 import com.aerann.GenshinBuildGenerator.services.interfaces.IArtifactService;
+import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
+@PropertySource("classpath:application.properties")
 public class GenshinBuildGeneratorApplication implements CommandLineRunner{
+    
+    @Value("${bouchon}")
+    private Boolean bouchon;
     
     @Autowired
     private ArtefactRepository repository;
@@ -50,9 +58,6 @@ public class GenshinBuildGeneratorApplication implements CommandLineRunner{
 //      }
       
 //      testService.testJsonReader();
-        if(repository.count() == 0){
-            artifactService.getArtifactFromJson();
-        }
 
     }
 

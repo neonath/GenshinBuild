@@ -16,6 +16,6 @@ import java.util.List;
 public interface IArtifactService {
 
     List<ArtifactInvKam> calculateBuild(List<ArtifactForm> data);
-    String getArtifactFromJson();
+    String getArtifactFromJson(String json);
     
 }

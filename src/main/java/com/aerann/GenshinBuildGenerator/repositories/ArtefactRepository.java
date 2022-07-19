@@ -4,6 +4,7 @@
  */
 package com.aerann.GenshinBuildGenerator.repositories;
 
+import com.aerann.GenshinBuildGenerator.metier.Artifact;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactInvKam;
 import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,6 +13,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author nathan
  */
-public interface ArtefactRepository extends MongoRepository<ArtifactInvKam, String>{
-    public List<ArtifactInvKam> findBySetKeyAndSlotKey(String setKey, String slotKey);
+public interface ArtefactRepository extends MongoRepository<Artifact, String>{
+    public List<Artifact> findBySetKeyAndSlotKey(String setKey, String slotKey);
 }

@@ -29,7 +29,7 @@ public class ArtifactAPI {
     
     @PostMapping(value = "/import",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public void importFromJSON(@RequestBody GenshinData data){
-        System.out.println(data.toString());
+        artefactService.getArtifactFromJson(null);
     }
     
     @PostMapping(value ="/calculateBuild",produces = MediaType.APPLICATION_JSON_VALUE)

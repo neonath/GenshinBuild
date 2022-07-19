@@ -16,16 +16,19 @@ import com.aerann.GenshinBuildGenerator.metier.hoyowiki.HoyoWikiResult;
 import com.aerann.GenshinBuildGenerator.metier.hoyowiki.HoyoWikiSet;
 import com.aerann.GenshinBuildGenerator.repositories.ArtefactRepository;
 import com.aerann.GenshinBuildGenerator.repositories.ArtifactMainStatRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.client.MongoClient;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -37,7 +40,11 @@ import org.springframework.web.client.RestTemplate;
  * @author nathan
  */
 @Service
+@PropertySource("classpath:application.properties")
 public class ArtifactService implements IArtifactService {
+    
+    @Value("${bouchon}")
+    private Boolean bouchon;
 
     @Autowired
     private ArtefactRepository repository;    
@@ -51,12 +58,17 @@ public class ArtifactService implements IArtifactService {
     private ArtifactMainStatRepository mainStatRepo;
     
     @Override
-    public String getArtifactFromJson(){
+    public String getArtifactFromJson(String json){
         ArrayList<Artifact> listArtifact = new ArrayList<>();
         ArrayList<Float> mainStatList = new ArrayList<>();
+        GenshinData data;
         
         try {
-            GenshinData data = om.readValue(new File("src/main/resources/genshinData_GOOD_2022_05_13_14_39.json"), GenshinData.class);
+            if(bouchon){
+                data = om.readValue(new File("src/main/resources/genshinData_GOOD_2022_05_13_14_39.json"), GenshinData.class);
+            } else{
+                data = om.readValue(json, GenshinData.class);
+            }
             
             ArrayList<ArtifactInvKam> ListArtifactInvKam = data.getArtifacts();
             for(ArtifactInvKam artInvKam : ListArtifactInvKam){
@@ -106,7 +118,13 @@ public class ArtifactService implements IArtifactService {
                 }
                 
                 //recup du nom de l'artefact
-                HoyoWikiResult result = restTemplate.getForObject("https://sg-wiki-api-static.hoyolab.com/hoyowiki/wapi/entry_page?entry_page_id=2061", HoyoWikiResult.class);
+                String url = "https://sg-wiki-api-static.hoyolab.com/hoyowiki/wapi/entry_page?entry_page_id=";
+                HashMap<String,String> artefactSetEntryPageIdMap = om.readValue(new File("src/main/resources/ArtefactSetEntryPageId.json"), new TypeReference<HashMap<String,String>>(){});
+                System.out.println("artefactSetEntryPageIdMap: "+artefactSetEntryPageIdMap);
+                System.out.println("artInvKam.getSlotKey(): "+artInvKam.getSetKey());
+                url += artefactSetEntryPageIdMap.get(artInvKam.getSetKey());
+                System.out.println("url: "+url);
+                HoyoWikiResult result = restTemplate.getForObject(url, HoyoWikiResult.class);
                 HoyoWikiSet set = null;
                 String artefactName = "";
                 try {
@@ -135,10 +153,11 @@ public class ArtifactService implements IArtifactService {
                     }
                 }
                 
-                //Artifact artifact = new Artifact(artInvKam, artefactName, mainStatList.get(artInvKam.getLevel()));
+                Artifact artifact = new Artifact(artInvKam, artefactName, mainStatList.get(artInvKam.getLevel()));
+                listArtifact.add(artifact);
             }
             
-            //repository.insert(data.getArtifacts());
+            repository.insert(listArtifact);
         } catch (IOException ex) {
             Logger.getLogger(ArtifactService.class.getName()).log(Level.SEVERE, null, ex);
         }

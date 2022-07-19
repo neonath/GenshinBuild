@@ -97,6 +97,29 @@ app.controller("home_controller", function($scope,$http) {
         alert("Error: " + status + ":" + data);
     }
     
+    $scope.importArtefactFromJson = function(){
+        $http({
+            method: 'POST',
+            url: "/import",
+            data: {},
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(_successImport,_errorImport);
+    };
+    
+    function _successImport(res){
+        console.log("httpcallresponse",res);
+    }
+    
+    function _errorImport(res){
+        var data = res.data;
+        var status = res.status;
+        var header = res.header;
+        var config = res.config;
+        alert("Error: " + status + ":" + data);
+    }
+    
     $scope.formatStat = function(stat){
         var statDao = {};
         statDao.key = $scope.getStatLabel(stat.key);
