@@ -1,5 +1,6 @@
 package com.aerann.GenshinBuildGenerator;
 
+import com.aerann.GenshinBuildGenerator.metier.Artifact;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactInvKam;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactForm;
 import com.aerann.GenshinBuildGenerator.metier.GenshinData;
@@ -48,7 +49,7 @@ class GenshinBuildGeneratorApplicationTests {
             List<ArtifactForm> data = new ArrayList<>();
             data.add(form);
             
-            List<ArtifactInvKam> artifacts = artefactService.calculateBuild(data);
+            List<Artifact> artifacts = artefactService.calculateBuild(data);
             
             System.out.println("artifacts: "+artifacts.toString());
         }

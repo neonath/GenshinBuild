@@ -122,10 +122,12 @@ app.controller("home_controller", function($scope,$http) {
     
     $scope.formatStat = function(stat){
         var statDao = {};
-        statDao.key = $scope.getStatLabel(stat.key);
-        statDao.value = "+ "+stat.value;
-        if(stat.key.includes("_")){
-            statDao.value = statDao.value+"%";
+        if(stat.key !== null){
+            statDao.key = $scope.getStatLabel(stat.key);
+            statDao.value = "+ "+stat.value;
+            if(stat.key.includes("_")){
+                statDao.value = statDao.value+"%";
+            }
         }
         return statDao.key+" "+statDao.value;
     };
