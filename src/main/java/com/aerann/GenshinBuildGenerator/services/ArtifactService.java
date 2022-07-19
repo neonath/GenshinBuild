@@ -166,8 +166,8 @@ public class ArtifactService implements IArtifactService {
     }
     
     @Override
-    public List<ArtifactInvKam> calculateBuild(List<ArtifactForm> data){
-        List<ArtifactInvKam> res = new ArrayList<>();
+    public List<Artifact> calculateBuild(List<ArtifactForm> data){
+        List<Artifact> res = new ArrayList<>();
         for(ArtifactForm artefact : data){
             Query query = new Query();
             ArrayList<Criteria> substatsCriteria = new ArrayList<>();
@@ -178,7 +178,7 @@ public class ArtifactService implements IArtifactService {
                 }
             }      
             query.addCriteria(Criteria.where("slotKey").is(artefact.getSlotKey()).and("mainStat").is(artefact.getMainStat()).andOperator(substatsCriteria));
-            res.addAll(mongoTemplate.find(query,ArtifactInvKam.class));   
+            res.addAll(mongoTemplate.find(query,Artifact.class));   
         }
 //        ArtifactForm artefact = data.get(0);  
          

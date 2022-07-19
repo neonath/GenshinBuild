@@ -4,6 +4,7 @@
  */
 package com.aerann.GenshinBuildGenerator.rest;
 
+import com.aerann.GenshinBuildGenerator.metier.Artifact;
 import com.aerann.GenshinBuildGenerator.metier.GenshinData;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactInvKam;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactForm;
@@ -33,8 +34,8 @@ public class ArtifactAPI {
     }
     
     @PostMapping(value ="/calculateBuild",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ArtifactInvKam> calculateBuild(@RequestBody ArrayList<ArtifactForm> artefacts){
-        List<ArtifactInvKam> res = artefactService.calculateBuild(artefacts);
+    public List<Artifact> calculateBuild(@RequestBody ArrayList<ArtifactForm> artefacts){
+        List<Artifact> res = artefactService.calculateBuild(artefacts);
         System.out.println(res.toString());
         return res;
     }

@@ -4,6 +4,7 @@
  */
 package com.aerann.GenshinBuildGenerator.services.interfaces;
 
+import com.aerann.GenshinBuildGenerator.metier.Artifact;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactInvKam;
 import com.aerann.GenshinBuildGenerator.metier.ArtifactForm;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface IArtifactService {
 
-    List<ArtifactInvKam> calculateBuild(List<ArtifactForm> data);
+    List<Artifact> calculateBuild(List<ArtifactForm> data);
     String getArtifactFromJson(String json);
     
 }
