@@ -61,7 +61,6 @@ public class ArtifactService implements IArtifactService {
     @Override
     public String getArtifactFromJson(String json){
         ArrayList<Artifact> listArtifact = new ArrayList<>();
-        ArrayList<Float> mainStatList = new ArrayList<>();
         GenshinData data;
         
         try {
@@ -73,39 +72,40 @@ public class ArtifactService implements IArtifactService {
             
             ArrayList<ArtifactInvKam> ListArtifactInvKam = data.getArtifacts();
             for(ArtifactInvKam artInvKam : ListArtifactInvKam){
+                Artifact artifact = new Artifact(artInvKam);
                 //recup de la main stat de l'artefact
                 ArtifactMainStat artMainStat = mainStatRepo.findByRarity(artInvKam.getRarity());
                 if(artMainStat != null){
                     switch(artInvKam.getMainStatKey()){
                         case "hp":
-                            mainStatList = artMainStat.getHp();
+                            artifact.setMainStatValue(artMainStat.getHp().get(artInvKam.getLevel()));
                             break;
                         case "atk":
-                            mainStatList = artMainStat.getAtk();
+                            artifact.setMainStatValue(artMainStat.getAtk().get(artInvKam.getLevel()));
                             break;
                         case "hp_":
-                            mainStatList = artMainStat.getHp_();
+                            artifact.setMainStatValue(artMainStat.getHp_().get(artInvKam.getLevel()));
                             break;
                         case "atk_":
-                            mainStatList = artMainStat.getAtk_();
+                            artifact.setMainStatValue(artMainStat.getAtk_().get(artInvKam.getLevel()));
                             break;
                         case "def_":
-                            mainStatList = artMainStat.getDef_();
+                            artifact.setMainStatValue(artMainStat.getDef_().get(artInvKam.getLevel()));
                             break;
                         case "enerRech_":
-                            mainStatList = artMainStat.getEnergyRech_();
+                            artifact.setMainStatValue(artMainStat.getEnergyRech_().get(artInvKam.getLevel()));
                             break;
                         case "eleMas":
-                            mainStatList = artMainStat.getElemMastery();
+                            artifact.setMainStatValue(artMainStat.getElemMastery().get(artInvKam.getLevel()));
                             break;
                         case "heal_":
-                            mainStatList = artMainStat.getHeal_();
+                            artifact.setMainStatValue(artMainStat.getHeal_().get(artInvKam.getLevel()));
                             break;
                         case "critRate_":
-                            mainStatList = artMainStat.getCritRate_();
+                            artifact.setMainStatValue(artMainStat.getCritRate_().get(artInvKam.getLevel()));
                             break;
                         case "physical_dmg_":
-                            mainStatList = artMainStat.getPhysDMG_();
+                            artifact.setMainStatValue(artMainStat.getPhysDMG_().get(artInvKam.getLevel()));
                             break;
                         case "anemo_dmg_":
                         case "pyro_dmg_":
@@ -113,7 +113,7 @@ public class ArtifactService implements IArtifactService {
                         case "cryo_dmg_":
                         case "hydro_dmg_":    
                         case "geo_dmg_":
-                            mainStatList = artMainStat.getElemDMG_();
+                            artifact.setMainStatValue(artMainStat.getElemDMG_().get(artInvKam.getLevel()));
                             break;
                     }
                 }
@@ -127,7 +127,6 @@ public class ArtifactService implements IArtifactService {
                 System.out.println("url: "+url);
                 HoyoWikiResult result = restTemplate.getForObject(url, HoyoWikiResult.class);
                 HoyoWikiSet set = null;
-                String artefactName = "";
                 try {
                     set = om.readValue(result.getData().getPage().getModules().get(1).getComponents().get(0).getData(), HoyoWikiSet.class);
                 } catch (IOException ex) {
@@ -137,24 +136,27 @@ public class ArtifactService implements IArtifactService {
                 if(set != null){
                     switch(artInvKam.getSlotKey()){
                     case "flower":
-                        artefactName = set.getFlower_of_life().getTitle();
+                        artifact.setName(set.getFlower_of_life().getTitle());
+                        artifact.setIconUrl(set.getFlower_of_life().getIcon_url());
                         break;
                     case "plume":
-                        artefactName = set.getPlume_of_death().getTitle();
+                        artifact.setName(set.getPlume_of_death().getTitle());
+                        artifact.setIconUrl(set.getPlume_of_death().getIcon_url());
                         break;
                     case "sands":
-                        artefactName = set.getSands_of_eon().getTitle();
+                        artifact.setName(set.getSands_of_eon().getTitle());
+                        artifact.setIconUrl(set.getSands_of_eon().getIcon_url());
                         break;
                     case "goblet":
-                        artefactName = set.getGoblet_of_eonothem().getTitle();
+                        artifact.setName(set.getGoblet_of_eonothem().getTitle());
+                        artifact.setIconUrl(set.getGoblet_of_eonothem().getIcon_url());
                         break;
                     case "circlet":
-                        artefactName = set.getCirclet_of_logos().getTitle();
+                        artifact.setName(set.getCirclet_of_logos().getTitle());
+                        artifact.setIconUrl(set.getCirclet_of_logos().getIcon_url());
                         break;
                     }
-                }
-                
-                Artifact artifact = new Artifact(artInvKam, artefactName, mainStatList.get(artInvKam.getLevel()));
+                }             
                 listArtifact.add(artifact);
             }
             

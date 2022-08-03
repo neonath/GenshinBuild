@@ -29,6 +29,7 @@ public class Artifact {
     private String equippedCharacter;
     private Boolean lock;
     private Integer subStatsCount;
+    private String iconUrl;
 
     public Artifact(String setKey, String slotKey) {
         this.setKey = setKey;
@@ -36,12 +37,16 @@ public class Artifact {
     }
     
     public Artifact(ArtifactInvKam artifact, String name, Float mainStatValue){
+        this(artifact);
+        this.name = name;
+        this.mainStatValue = mainStatValue;
+    }
+    
+    public Artifact(ArtifactInvKam artifact){
         this.setKey = artifact.getSetKey();
         this.slotKey = artifact.getSlotKey();
-        this.name = name;
         this.rarity = artifact.getRarity();
         this.mainStat = artifact.getMainStatKey();
-        this.mainStatValue = mainStatValue;
         this.level = artifact.getLevel();
         this.substats = artifact.getSubstats();
         this.equippedCharacter = artifact.getLocation();
@@ -151,6 +156,14 @@ public class Artifact {
     @JsonSetter("SubStatsCount")
     public void setSubStatsCount(Integer subStatsCount) {
         this.subStatsCount = subStatsCount;
+    }
+    
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     @Override
