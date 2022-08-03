@@ -255,7 +255,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <button type="submit" class="btn btn-primary" ng-click="calculateBuild()">calculer</button>
             </form>
-            <div class="card-deck">
+            <div class="card-group">
                 <div class="card artifact" ng-class="{'stars-3': res.rarity===3,'stars-4': res.rarity===4,'stars-5': res.rarity===5}" ng-repeat="res in artifactsRes">
                     <h5 class="card-header set-name">{{res.name}}</h5>
                     <div class="card-body artifact-main-info">

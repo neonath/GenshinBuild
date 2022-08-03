@@ -16,8 +16,7 @@ import org.springframework.data.annotation.Id;
  * @author nathan
  */
 public class ArtifactInvKam {
-    @Id
-    private String Id;
+    private String id;
     private String setKey;
     private String slotKey;
     private Integer Rarity;
@@ -46,14 +45,12 @@ public class ArtifactInvKam {
         this.level = level;
     }
 
-    @JsonGetter("Id")
     public String getId() {
-        return Id;
+        return id;
     }
 
-    @JsonSetter("Id")
     public void setId(String Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public String getSetKey() {
@@ -124,7 +121,7 @@ public class ArtifactInvKam {
 
     @Override
     public String toString() {
-        return "Artifact{" + "Id=" + Id + ", setName=" + setKey + ", slotKey=" + slotKey + ", Rarity=" + Rarity + ", mainStat=" + mainStat + ", level=" + level + ", substats=" + substats + ", equippedCharacter=" + equippedCharacter + ", lock=" + lock + ", subStatsCount=" + subStatsCount + '}';
+        return "Artifact{" + "Id=" + id + ", setName=" + setKey + ", slotKey=" + slotKey + ", Rarity=" + Rarity + ", mainStat=" + mainStat + ", level=" + level + ", substats=" + substats + ", equippedCharacter=" + equippedCharacter + ", lock=" + lock + ", subStatsCount=" + subStatsCount + '}';
     }
     
 }

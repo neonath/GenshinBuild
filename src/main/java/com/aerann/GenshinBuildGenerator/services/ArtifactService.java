@@ -29,6 +29,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -65,7 +66,7 @@ public class ArtifactService implements IArtifactService {
         
         try {
             if(bouchon){
-                data = om.readValue(new File("src/main/resources/genshinData_GOOD_2022_05_13_14_39.json"), GenshinData.class);
+                data = om.readValue(new File("src/main/resources/genshinData_GOOD_2022_07_20_03_04.json"), GenshinData.class);
             } else{
                 data = om.readValue(json, GenshinData.class);
             }
@@ -178,7 +179,13 @@ public class ArtifactService implements IArtifactService {
                 }
             }      
             query.addCriteria(Criteria.where("slotKey").is(artefact.getSlotKey()).and("mainStat").is(artefact.getMainStat()).andOperator(substatsCriteria));
-            res.addAll(mongoTemplate.find(query,Artifact.class));   
+            query.with(Sort.by(Sort.Direction.DESC,"mainStatValue"));
+            List<Artifact> artifactSlotList = mongoTemplate.find(query,Artifact.class);
+            if(artifactSlotList.size() > 1){
+                
+            }
+            
+            res.addAll(mongoTemplate.find(query,Artifact.class));
         }
 //        ArtifactForm artefact = data.get(0);  
          

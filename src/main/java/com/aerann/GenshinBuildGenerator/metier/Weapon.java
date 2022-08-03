@@ -9,12 +9,21 @@ package com.aerann.GenshinBuildGenerator.metier;
  * @author nathan
  */
 public class Weapon {
+    private Integer id;
     private String key;
     private Integer level;
     private Integer ascension;
     private Integer refinement;
     private String location;
     private Boolean lock;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getKey() {
         return key;
