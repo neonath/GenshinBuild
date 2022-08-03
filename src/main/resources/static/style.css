@@ -48,3 +48,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     background-color: rgb(58, 46, 27);
     color: rgb(157, 148, 136);
 }
+
+.padding-vertical-0{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.row{
+    --bs-gutter-x:0;
+}

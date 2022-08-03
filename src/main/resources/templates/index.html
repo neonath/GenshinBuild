@@ -255,14 +255,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
                 <button type="submit" class="btn btn-primary" ng-click="calculateBuild()">calculer</button>
             </form>
-            <div class="card-group">
+            <div class="row row-cols-5">
                 <div class="card artifact" ng-class="{'stars-3': res.rarity===3,'stars-4': res.rarity===4,'stars-5': res.rarity===5}" ng-repeat="res in artifactsRes">
-                    <h5 class="card-header set-name">{{res.name}}</h5>
-                    <div class="card-body artifact-main-info">
-                        <div class="artifact-main-info-content">
+                    <h5 class="card-header set-name text-white">{{res.name}}</h5>
+                    <div class="artifact-main-info text-white">
+                        <div class="card-body artifact-main-info-content">
                             <h4 class="card-subtitle">{{res.slotKey}}</h4>
                             <p class="card-text">{{getStatLabel(res.mainStatKey)}}</p>
                             <p class="card-text">{{res.mainStatValue}}</p>
+                            <<img ng-src="src" alt="alt"/>>
                             <span class="card-text" ng-show="res.rarity===3">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
