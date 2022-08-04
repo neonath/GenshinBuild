@@ -57,3 +57,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .row{
     --bs-gutter-x:0;
 }
+
+.artifact-icon{
+    position:absolute;
+    top: 39px;
+    right: 10px;
+    height: 150px;
+    width: 150px;
+}

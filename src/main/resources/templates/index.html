@@ -263,7 +263,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <h4 class="card-subtitle">{{res.slotKey}}</h4>
                             <p class="card-text">{{getStatLabel(res.mainStatKey)}}</p>
                             <p class="card-text">{{res.mainStatValue}}</p>
-                            <<img ng-src="src" alt="alt"/>>
+                            <img class="artifact-icon" ng-src="{{res.iconUrl}}" alt="{{res.name}}"/>
                             <span class="card-text" ng-show="res.rarity===3">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
