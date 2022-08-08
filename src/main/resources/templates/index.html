@@ -259,37 +259,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="card artifact" ng-class="{'stars-3': res.rarity===3,'stars-4': res.rarity===4,'stars-5': res.rarity===5}" ng-repeat="res in artifactsRes">
                     <h5 class="card-header set-name text-white">{{res.name}}</h5>
                     <div class="artifact-main-info text-white">
-                        <div class="card-body artifact-main-info-content">
-                            <h4 class="card-subtitle">{{res.slotKey}}</h4>
-                            <p class="card-text">{{getStatLabel(res.mainStatKey)}}</p>
-                            <p class="card-text">{{res.mainStatValue}}</p>
+                        <div class="artifact-main-info-content ps-3 min-height-150">
+                            <h6 class="mt-2">{{res.slotKey}}</h6>
                             <img class="artifact-icon" ng-src="{{res.iconUrl}}" alt="{{res.name}}"/>
-                            <span class="card-text" ng-show="res.rarity===3">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </span>
-                            <span class="card-text" ng-show="res.rarity===4">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </span>
-                            <span class="card-text" ng-show="res.rarity===5">
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </span>
+                            <div class="margin-top-2">
+                                <div class="artefact-main-stat">{{getStatLabel(res.mainStatKey)}}</div>
+                                <h2>{{res.mainStatValue}}</h2>
+                                <span ng-show="res.rarity===3">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                                <span ng-show="res.rarity===4">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                                <span ng-show="res.rarity===5">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </span>
+                            </div>    
                         </div>
                     </div>
                     <div class="card-body artefact-sub-info">
-                        <span class="badge text-bg-dark">+{{res.level}}</span>
+                        <span class="badge bg-dark mb-3">+{{res.level}}</span>
                         <ul>
                             <li class="card-text" ng-repeat="substat in res.substats" ng-hide="substat.key===null">{{formatStat(substat)}}</li>
-                        </ul>
-                        <p class="card-text">{{res.setKey}}</p>               
+                        </ul>               
                     </div>
                 </div>
             </div>
