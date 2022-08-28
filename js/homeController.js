@@ -76,7 +76,7 @@ app.controller("home_controller", function($scope,$http) {
         
         $http({
             method: 'POST',
-            url: "127.0.0.1:8080/calculateBuild",
+            url: "https://127.0.0.1:8080/calculateBuild",
             data: angular.toJson($scope.artifacts),
             headers: {
                 'Content-Type': 'application/json'
