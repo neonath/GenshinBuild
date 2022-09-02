@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope',function($scope,$http) {
+.controller('View1Ctrl', ['$scope','$http',function($scope,$http) {
     $scope.mainStatSablier = [{label: "ATK%", value: "atk_"},
                             {label: "DEF%", value: "def_"},
                             {label: "PV%", value: "hp_"},
@@ -81,7 +81,7 @@ angular.module('myApp.view1', ['ngRoute'])
         
         $http({
             method: 'POST',
-            url: "127.0.0.1:8080/calculateBuild",
+            url: "http://127.0.0.1:8080/calculateBuild",
             data: angular.toJson($scope.artifacts),
             headers: {
                 'Content-Type': 'application/json'
