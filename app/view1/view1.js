@@ -9,7 +9,7 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function($scope,$http) {
+.controller('View1Ctrl', ['$scope',function($scope,$http) {
     $scope.mainStatSablier = [{label: "ATK%", value: "atk_"},
                             {label: "DEF%", value: "def_"},
                             {label: "PV%", value: "hp_"},
