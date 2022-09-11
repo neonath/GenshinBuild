@@ -1,0 +1,17 @@
+<div ng-controller="importDataCtrl">
+    <div class="container-fluid">
+        <div class="">import Data</div>
+        <div class="">
+            <form action="/import" method="post">
+                <!--<label for="jsonFile">selectionner le fichier json</label>
+                <input type="file" id="jsonFile">-->
+                <div class="mb-3">
+                    <label for="jsonTextArea" class="form-label">coller le text au format JSON</label>
+                    <input type="text" id="jsonTextArea" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">uploader</button>
+            </form>
+            <button class="btn btn-primary" ng-click="importArtefactFromJson()">uploader bouchon</button>
+        </div>
+    </div>
+</div>

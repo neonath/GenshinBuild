@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.artefact', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+  $routeProvider.when('/artefact', {
+    templateUrl: 'artefact/artefact.html',
+    controller: 'artefactCtrl'
   });
 }])
 
-.controller('View1Ctrl', ['$scope','$http',function($scope,$http) {
+.controller('artefactCtrl', ['$scope','$http',function($scope,$http) {
     $scope.mainStatSablier = [{label: "ATK%", value: "atk_"},
                             {label: "DEF%", value: "def_"},
                             {label: "PV%", value: "hp_"},

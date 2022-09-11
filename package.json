@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "GenshinBuild",
   "private": true,
   "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "description": "gestion d'artefact genhsin",
+  "repository": "https://github.com/neonath/genshinBuild",
   "license": "MIT",
   "dependencies": {
     "angular": "^1.8.3",
