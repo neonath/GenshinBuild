@@ -5,6 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.artefact',
   'myApp.importData',
+  'myApp.personnage',
+  'myApp.arme',
   'myApp.version'
 ]).
 config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
