@@ -1,0 +1,6 @@
+{
+  "domain": "dev-u25nuoj71mxda6t2.us.auth0.com",
+  "clientId": "4Lfiu0nuY4OQ0uaB6EoD9cLBTO3MRdPb",
+  "audience": "https://dev-u25nuoj71mxda6t2.us.auth0.com/api/v2/",
+  "scope": "read:users"
+}

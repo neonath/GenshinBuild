@@ -1,0 +1,50 @@
+.modal-create-perso{
+    max-width: none;
+    width: 614px;
+    background-color: #1E1E1E;
+    border-radius: 8px 8px 8px 0px;
+}
+
+.modal-bg{
+    background-color: #1E1E1E;
+}
+
+.bg-rarity-4{
+    background: linear-gradient(180deg,#5e5789,#9c75b7)
+}
+
+.bg-rarity-5{
+    background: linear-gradient(180deg,#6B5551,#E6B057)
+}
+
+.letter-spacing-minus-dot-26px{
+    letter-spacing: -0.26px;
+  }
+
+.dendro-color{
+    color: var(--dendro-color);
+}
+
+.geo-color{
+    color: var(--geo-color);
+}
+
+.anemo-color{
+    color: var(--anemo-color);
+}
+
+.cryo-color{
+    color: var(--cryo-color);
+}
+
+.hydro-color{
+    color: var(--hydro-color);
+}
+
+.electro-color{
+    color: var(--electro-color);
+}
+
+.pyro-color{
+    color: var(--pyro-color);
+}

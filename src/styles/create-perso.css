@@ -1,0 +1,46 @@
+.header-bg{
+    background-image: url("https://enka.network/img/overlay.jpg");
+    background-size: contain;
+    background-blend-mode: luminosity;
+    /* background-blend-mode: hard-light; */
+    /* background-blend-mode: overlay; */
+    
+}
+
+.dendro-bg{
+    background-color: var(--dendro-bg-color);
+}
+
+.geo-bg{
+    background-color: var(--geo-bg-color);
+}
+
+.anemo-bg{
+    background-color: var(--anemo-bg-color);
+}
+
+.cryo-bg{
+    background-color: var(--cryo-bg-color);
+}
+
+.hydro-bg{
+    background-color: var(--hydro-bg-color);
+}
+
+.electro-bg{
+    background-color: var(--electro-bg-color);
+}
+
+.pyro-bg{
+    background-color: var(--pyro-bg-color);
+}
+
+.constel-img{
+ position: relative;
+ bottom: 53px;
+ left: 16px;
+}
+
+.constel-img.locked{
+    opacity: 0.4;
+}

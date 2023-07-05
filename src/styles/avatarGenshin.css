@@ -1,0 +1,24 @@
+.avatarGenshin{
+    border-radius: 50%;
+    overflow: hidden;
+    width: 89.3px;
+    height: 89px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.img-avatar{
+    height: 71.9%;
+    object-fit: cover;
+    position: relative;
+    top: 10;
+}
+
+.img-vision{
+    height: 30px;
+    width: 30px;
+    position: relative;
+    bottom: 4px;
+    background-color: #323947;
+    border-radius: 50%;
+}

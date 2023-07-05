@@ -1,0 +1,11 @@
+.artifact-collapse {
+    border-radius: var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);
+    padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+    margin-bottom: 0;
+    border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    display: flex;
+}
+
+.accordion-item{
+    border: 0;
+}
