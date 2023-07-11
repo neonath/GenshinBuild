@@ -1,0 +1,24 @@
+.button{
+   width: 32px;
+   max-width: 32px;
+   padding: 7px 13px; 
+   border: 1px solid #4A4A4A;
+   background: #2B3035;
+   font-size: 20px;
+}
+
+.border-left{
+    border-radius: 6px 0px 0px 6px;
+}
+
+.border-right{
+    border-radius: 0px 6px 6px 0px;
+}
+
+.text{
+    width: 69px;
+    max-width: 69px;
+    padding: 7px 23px;
+    border: 1px solid #4A4A4A;
+    background: #1E1E1E;
+}

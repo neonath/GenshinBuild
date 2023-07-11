@@ -44,3 +44,9 @@
 .constel-img.locked{
     opacity: 0.4;
 }
+
+.title{
+    padding: 6px 257px;
+    border-radius: 3px;
+    background: #353535;
+}

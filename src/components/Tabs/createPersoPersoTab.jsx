@@ -3,6 +3,7 @@ import { ReactSVG } from "react-svg";
 import { ReactComponent as BgConstel } from "../../assets/backgroundConstel.svg";
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
+import { LevelButton } from "../buttons/level-button";
 
 export const CreatePersoPersoTab = ({vision,listConstel}) =>{
     var [listConstelLock,setListConstelLock] = useState([false,false,false,false,false,false]);
@@ -20,6 +21,7 @@ export const CreatePersoPersoTab = ({vision,listConstel}) =>{
     }
 
     return(
+        <>
         <Row>
             {listConstel.map((constel,index) => {
                 console.log("listConstelLock",listConstelLock);
@@ -32,6 +34,11 @@ export const CreatePersoPersoTab = ({vision,listConstel}) =>{
                     </Col>
                 )
             })}
-        </Row> 
+        </Row>
+        <Row><div className="title">Niveau</div></Row>
+        <Row>
+            <LevelButton/>
+        </Row>
+        </> 
     )
 }
