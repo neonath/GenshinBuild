@@ -118,6 +118,18 @@
   margin-left: 1rem;
 }
 
+.margin-left-36px{
+  margin-left: 36px;
+}
+
+.margin-top-21px{
+  margin-top: 21px;
+}
+
+.margin-right-3px{
+  margin-right: 3px;
+}
+
 .genshin-font{
   font-family: HYWenHei;
 }
@@ -132,6 +144,10 @@
 
 .width-37px{
   width: 37px;
+}
+
+.width-20px{
+  width: 20px;
 }
 
 :root{

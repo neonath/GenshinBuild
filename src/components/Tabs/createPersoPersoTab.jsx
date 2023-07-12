@@ -4,9 +4,11 @@ import { ReactComponent as BgConstel } from "../../assets/backgroundConstel.svg"
 import { Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import { LevelButton } from "../buttons/level-button";
+import ascensionIcon from "../../assets/ascension.png";
 
 export const CreatePersoPersoTab = ({vision,listConstel}) =>{
     var [listConstelLock,setListConstelLock] = useState([false,false,false,false,false,false]);
+    var [listAscension, setListAscension] = useState([true,true,true,false,false,false]);
 
     function onConstelClick(index) {
         const nextConstelLock = listConstelLock.map((constelLock,i) => {
@@ -36,8 +38,15 @@ export const CreatePersoPersoTab = ({vision,listConstel}) =>{
             })}
         </Row>
         <Row><div className="title">Niveau</div></Row>
-        <Row>
-            <LevelButton/>
+        <Row className="margin-top-21px">
+            <Col><LevelButton className="margin-left-36px"/></Col>
+            <Col>
+            {listAscension.map((ascension,index) => {
+                return (
+                    <img src={ascensionIcon} className={ascension ? "width-20px margin-right-3px":"width-20px margin-right-3px opacity-25"}></img>
+                )
+            })}
+            </Col>
         </Row>
         </> 
     )

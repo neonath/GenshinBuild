@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "../../styles/level-button.css";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 
-export const LevelButton = () =>{
+export const LevelButton = ({className}) =>{
     const [level,setLevel] = useState(0);
 
     return(
-        <Row>
-            <Col className="button border-left" onClick={() => setLevel(level-1)}>-</Col>
-            <Col className="text">{level}</Col>
-            <Col className="button border-right" onClick={() => setLevel(level+1)}>+</Col>
+        <Row className={className}>
+            <Col xs="auto"><Button className="button border-left" onClick={() => {if(level>0){setLevel(level-1)}}}>-</Button></Col>
+            <Col xs="auto" className="text">{level}</Col>
+            <Col xs="auto"><Button className="button border-right" onClick={() => {if(level<90){setLevel(level+1)}}}>+</Button></Col>
         </Row>
     )
 }
