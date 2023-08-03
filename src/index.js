@@ -25,7 +25,7 @@ root.render(
     <BrowserRouter>
       <Auth0ProviderWithNavigate>
         <ConfigProvider theme={{algorithm: theme.darkAlgorithm}}>
-          <App />
+          <App/>
         </ConfigProvider>
       </Auth0ProviderWithNavigate>
     </BrowserRouter>

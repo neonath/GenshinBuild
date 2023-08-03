@@ -82,7 +82,7 @@ export default function Personnages() {
 
         </Modal.Footer>
       </Modal>
-      <Modal show={modalCreatePersoShow} onHide={handleModalCreatePersoClose} dialogClassName="modal-create-perso" contentClassName="modal-bg">
+      <Modal show={modalCreatePersoShow} onHide={handleModalCreatePersoClose} dialogClassName="modal-create-perso" contentClassName="modal-bg" data-bs-theme="dark">
             <CreatePersoModal persoChoisi={PersoChoisi}/>
       </Modal>
     </PageLayout>

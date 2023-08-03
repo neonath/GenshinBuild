@@ -1,7 +1,8 @@
+import React from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar, Tabs } from "antd";
 import { useState } from "react";
-import { Modal} from "react-bootstrap";
+import { Form, Modal} from "react-bootstrap";
 import "../../styles/create-perso.css";
 import { CreatePersoPersoTab } from "../Tabs/createPersoPersoTab";
 
@@ -29,22 +30,24 @@ export const CreatePersoModal = ({persoChoisi}) => {
             <span className="genshin-font text-size-26px text-white letter-spacing-minus-dot-26px padding-left-14px">{persoChoisi.name}</span>
         </Modal.Header>
         <Modal.Body>
-            <Tabs
-                defaultActiveKey="personnage"
-                type="card"
-                tabPosition="bottom"
-                items= {[
-                    {key: "personnage",
-                     label: "Personnage",
-                    children: <CreatePersoPersoTab vision={formatString(persoChoisi.vision)} listConstel={persoChoisi.listConstel}/>},
-                    {key: "arme",
-                     label: "Arme",
-                    children: "Arme"},
-                    {key: "artefact",
-                     label: "Artefact",
-                    children: "Artefact"}
-                ]}>
-            </Tabs>
+            <Form>
+                <Tabs
+                    defaultActiveKey="personnage"
+                    type="card"
+                    tabPosition="bottom"
+                    items= {[
+                        {key: "personnage",
+                        label: "Personnage",
+                        children: <CreatePersoPersoTab vision={formatString(persoChoisi.vision)} listConstel={persoChoisi.listConstel}/>},
+                        {key: "arme",
+                        label: "Arme",
+                        children: "Arme"},
+                        {key: "artefact",
+                        label: "Artefact",
+                        children: "Artefact"}
+                    ]}>
+                </Tabs>
+            </Form>
         </Modal.Body>
     </>
     )

@@ -1,3 +1,4 @@
+import React from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import {LoginButton} from "./buttons/login-button"
 import {LogoutButton} from "./buttons/logout-button"
@@ -22,7 +23,7 @@ export const PageLayout = ({children}) => {
                 {isAuthenticated && <LogoutButton/>}
                 </Container>
             </Navbar>
-            <div>{children}</div>
+            <div data-bs-theme="dark">{children}</div>
         </div>
     )
 }
