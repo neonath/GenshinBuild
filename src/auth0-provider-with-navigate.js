@@ -1,7 +1,9 @@
+import React from "react";
+import PropTypes from "prop-types";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom"
 
-export const Auth0ProviderWithNavigate = ({children}) => {
+const Auth0ProviderWithNavigate = ({children}) => {
     const navigate = useNavigate();
 
     const domain = process.env.REACT_APP_AUTH0_DOMAIN;
@@ -29,3 +31,9 @@ export const Auth0ProviderWithNavigate = ({children}) => {
         </Auth0Provider>
     )
 }
+
+Auth0ProviderWithNavigate.propTypes = {
+    children: PropTypes.node
+}
+
+export default Auth0ProviderWithNavigate;

@@ -1,8 +1,9 @@
+import PropTypes from "prop-types"
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import StatInput from './StatInput';
 
-export default function ArtefactInput({ nom, listStats, selectedArtifact, onStatChange}) {
+function ArtefactInput({ nom, listStats, selectedArtifact, onStatChange}) {
   //console.log("selectedStats",selectedStats);
   const subStats = [
     { label: '', value: ''},
@@ -88,3 +89,15 @@ export default function ArtefactInput({ nom, listStats, selectedArtifact, onStat
     </Card>
   );
 }
+
+ArtefactInput.propTypes = {
+  listStats: PropTypes.any,
+  nom: PropTypes.any,
+  onStatChange: PropTypes.func,
+  selectedArtifact: PropTypes.shape({
+    mainStat: PropTypes.any,
+    substats: PropTypes.any
+  })
+}
+
+export default ArtefactInput;

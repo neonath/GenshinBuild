@@ -1,3 +1,4 @@
+import React from "react";
 import { Avatar } from "antd";
 import { QuestionOutlined, UserOutlined } from "@ant-design/icons";
 import "../styles/avatarGenshin.css";
@@ -48,6 +49,7 @@ export const AvatarGenshin = ({iconUrl,rarity,vision}) => {
 
         case "Pyro":
             visionIcon = "https://wiki.hoyolab.com/_nuxt/img/pyro.2267e27.png";
+            break;
         default:
             break;
     }

@@ -1,9 +1,10 @@
+import PropTypes from "prop-types"
 import { useState } from "react";
 import React from "react";
 import "../../styles/level-button.css";
 import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
 
-export const LevelButton = ({className,level,onMinusClick,onPlusClick,onChange}) =>{
+const LevelButton = ({className,level,onMinusClick,onPlusClick,onChange}) =>{
 
     return(
         <InputGroup className={className}>
@@ -13,3 +14,13 @@ export const LevelButton = ({className,level,onMinusClick,onPlusClick,onChange})
         </InputGroup>
     )
 }
+
+LevelButton.propTypes = {
+  className: PropTypes.any,
+  level: PropTypes.any,
+  onChange: PropTypes.func,
+  onMinusClick: PropTypes.func,
+  onPlusClick: PropTypes.func
+}
+
+export default LevelButton;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import configData from "../config.json";
 import {apiCall} from "../apis/api";
-import { PageLayout } from "../components/page-layout";
+import PageLayout from "../components/page-layout";
 
 export default function Dashboard() {
   const {user} = useAuth0();
@@ -19,7 +19,7 @@ export default function Dashboard() {
         <p>{user.email}</p>
         {console.log("user",user)}
 
-        <button onClick={() => apiCall.securedAPITest(accessToken)}>Test private API</button>
+        <button onClick={() => apiCall.securedAPITest()}>Test private API</button>
         <button onClick={() => apiCall.publicAPITest()}>Test public API</button>
       </div>
     </PageLayout>

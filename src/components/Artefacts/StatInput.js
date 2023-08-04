@@ -1,7 +1,8 @@
+import PropTypes from "prop-types"
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 
-export default function StatInput({ nom, id, listStats, selectedStat, onStatChange }) {
+function StatInput({ nom, id, listStats, selectedStat, onStatChange }) {
   //const [selectedStats, setSelectedStats] = useState('');
   //const stat = listStat.map((stat) => stat);
   //console.log("stat",stat);
@@ -27,3 +28,15 @@ export default function StatInput({ nom, id, listStats, selectedStat, onStatChan
     </Form.Group>
   );
 }
+
+StatInput.propTypes = {
+  id: PropTypes.any,
+  listStats: PropTypes.shape({
+    map: PropTypes.func
+  }),
+  nom: PropTypes.any,
+  onStatChange: PropTypes.func,
+  selectedStat: PropTypes.any
+}
+
+export default StatInput;

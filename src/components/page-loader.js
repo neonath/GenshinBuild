@@ -1,3 +1,4 @@
+import React from "react";
 import "../styles/page-loader.css"
 
 export const PageLoader = () => {

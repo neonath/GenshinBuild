@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import React,{useState} from "react";
 import { apiCall } from "../apis/api";
-import { PageLayout } from "../components/page-layout";
+import PageLayout from "../components/page-layout";
 import { CharacterApiCall } from "../apis/CharacterAPI";
 import { Button, Col, ModalHeader, Row } from "react-bootstrap";
 import { Modal } from "react-bootstrap";
@@ -11,7 +11,7 @@ import { AvatarGenshin } from "../components/avatar";
 import {UserOutlined} from "@ant-design/icons";
 import "../styles/personnage.css"
 import { Avatar } from "antd";
-import { CreatePersoModal } from "../components/modals/create-perso";
+import CreatePersoModal from "../components/modals/create-perso";
 
 export default function Personnages() {
   const {user} = useAuth0();

@@ -5,7 +5,7 @@ import ArtefactCard from '../components/Artefacts/ArtefactCard';
 import {apiCall} from '../apis/api';
 import ArtefactCardCollapse from '../components/Artefacts/artefactCardCollapse';
 import "../styles/artefact.css";
-import { PageLayout } from '../components/page-layout';
+import PageLayout from '../components/page-layout';
 
 export default function Artefacts() {
   const mainStatSablier = [

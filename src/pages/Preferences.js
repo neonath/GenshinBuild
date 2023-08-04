@@ -1,6 +1,6 @@
 import React from "react";
 import { apiCall } from "../apis/api";
-import { PageLayout } from "../components/page-layout";
+import PageLayout from "../components/page-layout";
 
 export default function Preferences() {
   function onGetAllPersonnagesClick() {

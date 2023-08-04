@@ -1,10 +1,11 @@
+import PropTypes from "prop-types"
 import React from "react"
 import { Container, Nav, Navbar } from "react-bootstrap"
 import {LoginButton} from "./buttons/login-button"
 import {LogoutButton} from "./buttons/logout-button"
 import { useAuth0 } from "@auth0/auth0-react"
 
-export const PageLayout = ({children}) => {
+const PageLayout = ({children}) => {
     const {isAuthenticated} = useAuth0();
 
     return(
@@ -27,3 +28,9 @@ export const PageLayout = ({children}) => {
         </div>
     )
 }
+
+PageLayout.propTypes = {
+  children: PropTypes.any
+}
+
+export default PageLayout;

@@ -1,13 +1,14 @@
 // import { ReactComponent as bgConstel} from "../../assets/backgroundConstel.svg";
+import PropTypes from "prop-types"
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { ReactComponent as BgConstel } from "../../assets/backgroundConstel.svg";
 import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
-import { LevelButton } from "../buttons/level-button";
+import LevelButton from "../buttons/level-button";
 import ascensionIcon from "../../assets/ascension.png";
 
-export const CreatePersoPersoTab = ({vision,listConstel}) =>{
+const CreatePersoPersoTab = ({vision,listConstel}) =>{
     var [listConstelLock,setListConstelLock] = useState([false,false,false,false,false,false]);
     var [listAscension, setListAscension] = useState([false,false,false,false,false,false]);
     var [levelPerso,setLevelPerso] = useState(0);
@@ -159,3 +160,14 @@ export const CreatePersoPersoTab = ({vision,listConstel}) =>{
         </> 
     )
 }
+
+CreatePersoPersoTab.propTypes = {
+  listConstel: PropTypes.shape({
+    map: PropTypes.func
+  }),
+  vision: PropTypes.any
+}
+
+
+
+export default CreatePersoPersoTab;

@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import configData from "./config.json";
 import { BrowserRouter } from "react-router-dom";
-import { Auth0ProviderWithNavigate } from "./auth0-provider-with-navigate";
+import Auth0ProviderWithNavigate from "./auth0-provider-with-navigate";
 import { ConfigProvider, theme } from "antd";
 
 const rootElement = document.getElementById("root");
