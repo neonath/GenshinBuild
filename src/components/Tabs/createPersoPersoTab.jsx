@@ -54,7 +54,7 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
     }
 
     function handlePlusLevelAtkNormalButtonClick() {
-        if(levelAtkNormal<90){
+        if(levelAtkNormal<10){
             setLevelAtkNormal(levelAtkNormal+1);
         }
     }
@@ -70,7 +70,7 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
     }
 
     function handlePlusLevelCompetenceButtonClick() {
-        if(levelCompetence<90){
+        if(levelCompetence<10){
             setLevelCompetence(levelCompetence+1);
         }
     }
@@ -86,7 +86,7 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
     }
 
     function handlePlusLevelDechainementButtonClick() {
-        if(levelDechainement<90){
+        if(levelDechainement<10){
             setLevelDechainement(levelDechainement+1);
         }
     }
