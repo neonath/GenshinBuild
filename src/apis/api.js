@@ -56,6 +56,16 @@ export const apiCall = {
     return response.data
   },
 
+  getAllWeapon: async function (cancel = false) {
+    const response = await api.request({
+      url: `/character/`,
+      method: "GET",
+      signal: cancel ? cancelApiObject[this.getAllWeapon.name].handleRequestCancellation().signal : undefined,
+    })
+
+    return response.data
+  },
+
   createUser: async function (user, cancel = false){
     const response = await api.request({
       url: `/user/`,
