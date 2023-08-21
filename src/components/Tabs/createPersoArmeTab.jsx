@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { Button, Col, Row } from "react-bootstrap";
 import CreateArmeModal from "../modals/create-arme";
-import { apiCall } from "../../apis/api";
 import { WeaponApiCall } from "../../apis/ArmeAPI";
 
 const CreatePersoArmeTab = () => {
     const [listArmes, setListArmes] = useState([]);
+    const [AddNewArmeClicked, setAddNewArmeClicked] = useState(false);
 
     function getAllWeapon() {
         WeaponApiCall.getAllWeapon(false).then((responseData) => {
@@ -15,15 +15,28 @@ const CreatePersoArmeTab = () => {
 
     function onAddNewArmeClick() {
         getAllWeapon();
+        setAddNewArmeClicked(!AddNewArmeClicked);
+    }
+
+    const CreateOrChooseWeapon = () => {
+        if(!AddNewArmeClicked){
+            <Row>
+                <Col><Button onClick={() => onAddNewArmeClick()}>Ajouter une nouvelle arme</Button></Col>
+                <Col className="align-self-center text-center">ou</Col>
+                <Col><Button>Selectionner une arme dans l'inventaire</Button></Col>
+            </Row>
+        }
     }
 
  return(
     <>
-    <Row>
-        <Col><Button onClick={() => onAddNewArmeClick()}>Ajouter une nouvelle arme</Button></Col>
-        <Col className="align-self-center text-center">ou</Col>
-        <Col><Button>Selectionner une arme dans l'inventaire</Button></Col>
-    </Row>
+    {!AddNewArmeClicked &&
+        <Row>
+            <Col><Button onClick={() => onAddNewArmeClick()}>Ajouter une nouvelle arme</Button></Col>
+            <Col className="align-self-center text-center">ou</Col>
+            <Col><Button>Selectionner une arme dans l'inventaire</Button></Col>
+        </Row>    
+    }
     <CreateArmeModal listArmes={listArmes}/>
     </>
  )

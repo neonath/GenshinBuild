@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { AvatarGenshin } from "../avatar";
 import { Avatar } from "antd";
 
 const CreateArmeModal = ({listArmes}) =>{
@@ -12,8 +11,8 @@ const CreateArmeModal = ({listArmes}) =>{
                 //console.log("personnage",personnage);
                 return (
                 <Col key={arme.entryPageId}>
-                    <button>
-                    <Avatar src={arme.iconUrl} className={"bg-rarity-5"}></Avatar>
+                    <button className="bg-transparent border-0 padding-vertical-6px">
+                    <Avatar src={arme.iconUrl} className={"bg-rarity-"+arme.rarity} style={{border: "none", width:"auto", height:"auto"}}></Avatar>
                     </button>
                 </Col>
                 );

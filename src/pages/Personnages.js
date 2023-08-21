@@ -68,7 +68,7 @@ export default function Personnages() {
               //console.log("personnage",personnage);
               return (
                 <Col key={personnage.entryPageId}>
-                  <button onClick={() => onAvatarClick(personnage)}>
+                  <button className="bg-transparent border-0 padding-vertical-6px" onClick={() => onAvatarClick(personnage)}>
                     <AvatarGenshin iconUrl={personnage.iconUrl}
                       rarity={personnage.rarity}
                       vision={personnage.vision}/>

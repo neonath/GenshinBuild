@@ -9,12 +9,24 @@
     background-color: #1E1E1E;
 }
 
+.bg-rarity-1{
+    background: var(--onestar-color);
+}
+
+.bg-rarity-2{
+    background: var(--twostar-color);
+}
+
+.bg-rarity-3{
+    background: var(--threestar-color);
+}
+
 .bg-rarity-4{
-    background: linear-gradient(180deg,#5e5789,#9c75b7)
+    background: var(--fourstar-color);
 }
 
 .bg-rarity-5{
-    background: linear-gradient(180deg,#6B5551,#E6B057)
+    background: var(--fivestar-color);
 }
 
 .letter-spacing-minus-dot-26px{

@@ -102,6 +102,11 @@
   padding-right: 1rem;
 }
 
+.padding-vertical-6px{
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
 .padding-left-1rem{
   padding-left: 1rem;
 }
@@ -169,6 +174,9 @@
   --hydro-color: #56a2ff;
   --electro-color: #ffa1ff;
   --pyro-color: #f58453;
+  --onestar-color: linear-gradient(180deg,#6a6d74,#868586);
+  --twostar-color: linear-gradient(180deg,#4b6c67,#519072);
+  --threestar-color: linear-gradient(180deg,#567496,#5392b8);
   --fourstar-color: linear-gradient(180deg,#5e5789,#9c75b7);
   --fivestar-color: linear-gradient(180deg,#6B5551,#E6B057);
 }
