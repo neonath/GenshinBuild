@@ -107,8 +107,20 @@
   padding-bottom: 6px;
 }
 
+.padding-top-31px{
+  padding-top: 31px;
+}
+
+.padding-top-19px{
+  padding-top: 19px;
+}
+
 .padding-left-1rem{
   padding-left: 1rem;
+}
+
+.padding-right-1rem{
+  padding-right: 1rem;
 }
 
 .padding-0{
@@ -135,8 +147,24 @@
   margin-top: 28px;
 }
 
+.margin-top-31px{
+  margin-top: 31px;
+}
+
+.margin-top-19px{
+  margin-top: 19px;
+}
+
+.margin-left-14px{
+  margin-left: 14px;
+}
+
 .margin-right-3px{
   margin-right: 3px;
+}
+
+.margin-right-1rem{
+  margin-right: 1rem;
 }
 
 .genshin-font{
@@ -145,6 +173,10 @@
 
 .text-size-26px {
   font-size: 26px;
+}
+
+.text-size-20px {
+  font-size: 20px;
 }
 
 .width-69px{

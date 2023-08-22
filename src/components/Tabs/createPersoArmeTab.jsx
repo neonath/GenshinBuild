@@ -18,16 +18,6 @@ const CreatePersoArmeTab = () => {
         setAddNewArmeClicked(!AddNewArmeClicked);
     }
 
-    const CreateOrChooseWeapon = () => {
-        if(!AddNewArmeClicked){
-            <Row>
-                <Col><Button onClick={() => onAddNewArmeClick()}>Ajouter une nouvelle arme</Button></Col>
-                <Col className="align-self-center text-center">ou</Col>
-                <Col><Button>Selectionner une arme dans l'inventaire</Button></Col>
-            </Row>
-        }
-    }
-
  return(
     <>
     {!AddNewArmeClicked &&

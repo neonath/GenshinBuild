@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react";
 import { ReactSVG } from "react-svg";
 import { ReactComponent as BgConstel } from "../../assets/backgroundConstel.svg";
-import { Col, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import { useState } from "react";
 import LevelButton from "../buttons/level-button";
 import ascensionIcon from "../../assets/ascension.png";
@@ -115,49 +115,49 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
     console.log(listAscension);
 
     return(
-        <>
-        <Row>
-            {listConstel.map((constel,index) => {
-                // console.log("listConstelLock",listConstelLock);
-                return (
-                    <Col key={"constel"+index}>
-                        <div onClick={() => onConstelClick(index)}>
-                            <BgConstel className={listConstelLock[index] ? "width-69px " + vision + "-color locked":"width-69px " + vision + "-color"}/>
-                            <img src={constel.iconUrl} className={listConstelLock[index] ? "width-37px constel-img locked":"width-37px constel-img"}></img>
-                        </div>
-                    </Col>
-                )
-            })}
-        </Row>
-        <Row><div className="title">Niveau</div></Row>
-        <Row className="margin-top-21px">
-            <Col>
-                <LevelButton className="margin-left-36px" level={levelPerso} onMinusClick={handleMinusLevelPersoButtonClick} onPlusClick={handlePlusLevelPersoButtonClick} onChange={onChangeLevelPerso}/>
-            </Col>
-            <Col>
-            {listAscension.map((ascension,index) => {
-                return (
-                    <img key={index} src={ascensionIcon} className={ascension ? "width-20px margin-right-3px":"width-20px margin-right-3px opacity-25"}></img>
-                )
-            })}
-            </Col>
-        </Row>
-        <Row><div className="title margin-top-28px">Talents</div></Row>
-        <Row className="margin-top-21px">
-            <Form.Group as={Col}>
-                <Form.Label>Normal</Form.Label>
-                <LevelButton className="margin-left-36px" level={levelAtkNormal} onMinusClick={handleMinusLevelAtkNormalButtonClick} onPlusClick={handlePlusLevelAtkNormalButtonClick} onChange={onChangeLevelAtkNormal}/>
-            </Form.Group>
-            <Form.Group as={Col}>
-                <Form.Label>Compétence</Form.Label>
-                <LevelButton className="margin-left-36px" level={levelCompetence} onMinusClick={handleMinusLevelCompetenceButtonClick} onPlusClick={handlePlusLevelCompetenceButtonClick} onChange={onChangeLevelCompetence}/>
-            </Form.Group>
-            <Form.Group as={Col}>
-                <Form.Label>Déchainement</Form.Label>
-                <LevelButton className="margin-left-36px" level={levelDechainement} onMinusClick={handleMinusLevelDechainementButtonClick} onPlusClick={handlePlusLevelDechainementButtonClick} onChange={onChangeLevelDechainement}/>
-            </Form.Group>
-        </Row>
-        </> 
+        <Container>
+            <Row>
+                {listConstel.map((constel,index) => {
+                    // console.log("listConstelLock",listConstelLock);
+                    return (
+                        <Col key={"constel"+index}>
+                            <div onClick={() => onConstelClick(index)}>
+                                <BgConstel className={listConstelLock[index] ? "width-69px " + vision + "-color locked":"width-69px " + vision + "-color"}/>
+                                <img src={constel.iconUrl} className={listConstelLock[index] ? "width-37px constel-img locked":"width-37px constel-img"}></img>
+                            </div>
+                        </Col>
+                    )
+                })}
+            </Row>
+            <Row><div className="title text-center">Niveau</div></Row>
+            <Row className="margin-top-21px">
+                <Col className="me-3">
+                    <LevelButton level={levelPerso} onMinusClick={handleMinusLevelPersoButtonClick} onPlusClick={handlePlusLevelPersoButtonClick} onChange={onChangeLevelPerso}/>
+                </Col>
+                <Col className="ms-3 align-self-center">
+                {listAscension.map((ascension,index) => {
+                    return (
+                        <img key={index} src={ascensionIcon} className={ascension ? "width-20px margin-right-3px":"width-20px margin-right-3px opacity-25"}></img>
+                    )
+                })}
+                </Col>
+            </Row>
+            <Row><div className="title text-center margin-top-28px">Talents</div></Row>
+            <Row className="margin-top-21px">
+                <Form.Group as={Col}>
+                    <Form.Label as="div" className="text-center">Normal</Form.Label>
+                    <LevelButton level={levelAtkNormal} onMinusClick={handleMinusLevelAtkNormalButtonClick} onPlusClick={handlePlusLevelAtkNormalButtonClick} onChange={onChangeLevelAtkNormal}/>
+                </Form.Group>
+                <Form.Group as={Col}>
+                    <Form.Label as="div" className="text-center">Compétence</Form.Label>
+                    <LevelButton level={levelCompetence} onMinusClick={handleMinusLevelCompetenceButtonClick} onPlusClick={handlePlusLevelCompetenceButtonClick} onChange={onChangeLevelCompetence}/>
+                </Form.Group>
+                <Form.Group as={Col}>
+                    <Form.Label as="div" className="text-center">Déchainement</Form.Label>
+                    <LevelButton level={levelDechainement} onMinusClick={handleMinusLevelDechainementButtonClick} onPlusClick={handlePlusLevelDechainementButtonClick} onChange={onChangeLevelDechainement}/>
+                </Form.Group>
+            </Row>
+        </Container>
     )
 }
 
