@@ -55,7 +55,7 @@ const CreateArmeModal = ({listArmes}) =>{
                     //console.log("personnage",personnage);
                     return (
                     <Col key={arme.entryPageId}>
-                        <Button className="bg-transparent border-0 padding-vertical-6px" onClick={() => onArmeClick(arme)}>
+                        <Button className="bg-transparent border-0 p-2" onClick={() => onArmeClick(arme)}>
                             <Avatar src={arme.iconUrl} className={"bg-rarity-"+arme.rarity} style={{border: "none", width:"auto", height:"auto"}}></Avatar>
                         </Button>
                     </Col>

@@ -27,7 +27,7 @@ const CreatePersoArmeTab = () => {
             <Col><Button>Selectionner une arme dans l'inventaire</Button></Col>
         </Row>    
     }
-    <CreateArmeModal listArmes={listArmes}/>
+    {AddNewArmeClicked && <CreateArmeModal listArmes={listArmes}/>}
     </>
  )
 }

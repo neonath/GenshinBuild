@@ -1,12 +1,12 @@
 import { api } from "./configs/axiosConfig";
 import { defineCancelApiObject } from "./configs/axiosUtils";
-export const WeaponApiCall = {
+export const ArtefactApiCall = {
 
-  getAllWeapon: async function (cancel = false) {
+  getAllArtefactSet: async function (cancel = false) {
     const response = await api.request({
-      url: `/weapon/`,
+      url: `/artifact/`,
       method: "GET",
-      signal: cancel ? cancelApiObject[this.getAllWeapon.name].handleRequestCancellation().signal : undefined,
+      signal: cancel ? cancelApiObject[this.getAllArtefactSet.name].handleRequestCancellation().signal : undefined,
     })
 
     return response.data

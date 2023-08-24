@@ -7,6 +7,7 @@ import { Form, Modal} from "react-bootstrap";
 import "../../styles/create-perso.css";
 import CreatePersoPersoTab from "../Tabs/createPersoPersoTab";
 import CreatePersoArmeTab from "../Tabs/createPersoArmeTab";
+import CreatePersoArtefactTab from "../Tabs/createPersoArtefactTab";
 
 const CreatePersoModal = ({persoChoisi}) => {
     function formatString(string) {
@@ -46,7 +47,7 @@ const CreatePersoModal = ({persoChoisi}) => {
                         children: <CreatePersoArmeTab/>},
                         {key: "artefact",
                         label: "Artefact",
-                        children: "Artefact"}
+                        children: <CreatePersoArtefactTab/>}
                     ]}>
                 </Tabs>
             </Form>
