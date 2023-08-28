@@ -68,6 +68,38 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
         { label: 'Soins', value: 'heal_' },
       ];
 
+      var selectOption = <div></div>;
+      switch (slot) {
+        case "flower":
+            selectOption = 
+                <option value="hp">PV</option>;
+            break;
+        case "plume":
+            selectOption = 
+                <option value="atk">Attaque</option>;
+            break;
+        case "sands":
+            selectOption = 
+                mainStatSablier.map((set,index) =>{
+                    return <option key={index} value={set.value}>{set.label}</option>;
+                });
+            break;
+        case "goblet":
+            selectOption = 
+                mainStatCoupe.map((set,index) =>{
+                    return <option key={index} value={set.value}>{set.label}</option>;
+                });
+            break;
+        case "circlet":
+            selectOption = 
+                mainStatCouronne.map((set,index) =>{
+                    return <option key={index} value={set.value}>{set.label}</option>;
+                });
+            break;
+        default:
+            break;
+      }
+
     return(
         <Container>
             <Row>
@@ -90,6 +122,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
             <Row>
                 <Form.Select as={Col}>
                     <option>selectionner la statistique</option>
+                    {selectOption}
                 </Form.Select>
                 <Col><LevelButton/></Col>
             </Row>
@@ -99,6 +132,9 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
             <Row>
                 <Form.Select as={Col}>
                     <option value="">selectionner la statistique</option>
+                    {subStats.map((stat,index) =>{
+                        return <option key={index} value={stat.value}>{stat.label}</option>
+                    })}
                 </Form.Select>
                 <InputGroup as={Col}>
                     <Form.Control type="number"></Form.Control>
