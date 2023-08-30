@@ -12,15 +12,15 @@ export const ArtefactApiCall = {
     return response.data
   },
 
-  getPersonnagesByUserEmail: async function (email,cancel = false) {
+  getArtefactMainStatByRarity: async function (rarity,cancel = false) {
     const response = await api.request({
-      url: `/character/user/`+email,
+      url: `/artifact/mainstat/rarity/`+rarity,
       method: "GET",
-      signal: cancel ? cancelApiObject[this.getPersonnagesByUserEmail.name].handleRequestCancellation().signal : undefined,
+      signal: cancel ? cancelApiObject[this.getArtefactMainStatByRarity.name].handleRequestCancellation().signal : undefined,
     })
 
     return response.data
-  }
+  },
 }
 
 const cancelApiObject = defineCancelApiObject(api);
