@@ -1,7 +1,6 @@
 // import { ReactComponent as bgConstel} from "../../assets/backgroundConstel.svg";
 import PropTypes from "prop-types"
 import React from "react";
-import { ReactSVG } from "react-svg";
 import { ReactComponent as BgConstel } from "../../assets/backgroundConstel.svg";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import { useState } from "react";
@@ -26,73 +25,6 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
         })
         setListConstelLock(nextConstelLock);
         // console.log("listConstelLock",listConstelLock);
-    }
-
-    function handleMinusLevelPersoButtonClick() {
-        if(levelPerso>0){
-            setLevelPerso(levelPerso-1);
-        }
-        setAscensionList();
-    }
-
-    function handlePlusLevelPersoButtonClick() {
-        if(levelPerso<90){
-            setLevelPerso(levelPerso+1);
-        }
-        setAscensionList();
-    }
-
-    function onChangeLevelPerso(e){
-        setLevelPerso(parseInt(e.target.value));
-        setAscensionList();
-    }
-
-    function handleMinusLevelAtkNormalButtonClick() {
-        if(levelAtkNormal>0){
-            setLevelAtkNormal(levelAtkNormal-1);
-        }
-    }
-
-    function handlePlusLevelAtkNormalButtonClick() {
-        if(levelAtkNormal<10){
-            setLevelAtkNormal(levelAtkNormal+1);
-        }
-    }
-
-    function onChangeLevelAtkNormal(e){
-        setLevelAtkNormal(parseInt(e.target.value));
-    }
-
-    function handleMinusLevelCompetenceButtonClick() {
-        if(levelCompetence>0){
-            setLevelCompetence(levelCompetence-1);
-        }
-    }
-
-    function handlePlusLevelCompetenceButtonClick() {
-        if(levelCompetence<10){
-            setLevelCompetence(levelCompetence+1);
-        }
-    }
-
-    function onChangeLevelCompetence(e){
-        setLevelCompetence(parseInt(e.target.value));
-    }
-
-    function handleMinusLevelDechainementButtonClick() {
-        if(levelDechainement>0){
-            setLevelDechainement(levelDechainement-1);
-        }
-    }
-
-    function handlePlusLevelDechainementButtonClick() {
-        if(levelDechainement<10){
-            setLevelDechainement(levelDechainement+1);
-        }
-    }
-
-    function onChangeLevelDechainement(e){
-        setLevelDechainement(parseInt(e.target.value));
     }
 
     function setAscensionList(){
@@ -132,7 +64,7 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
             <Row><div className="title text-center">Niveau</div></Row>
             <Row className="margin-top-21px">
                 <Col className="me-3">
-                    <LevelButton level={levelPerso} onMinusClick={handleMinusLevelPersoButtonClick} onPlusClick={handlePlusLevelPersoButtonClick} onChange={onChangeLevelPerso}/>
+                    <LevelButton setLevel={setLevelPerso} min={0} max={90}/>
                 </Col>
                 <Col className="ms-3 align-self-center">
                 {listAscension.map((ascension,index) => {
@@ -146,15 +78,15 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
             <Row className="margin-top-21px">
                 <Form.Group as={Col}>
                     <Form.Label as="div" className="text-center">Normal</Form.Label>
-                    <LevelButton level={levelAtkNormal} onMinusClick={handleMinusLevelAtkNormalButtonClick} onPlusClick={handlePlusLevelAtkNormalButtonClick} onChange={onChangeLevelAtkNormal}/>
+                    <LevelButton setLevel={setLevelAtkNormal} min={0} max={10}/>
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Label as="div" className="text-center">Compétence</Form.Label>
-                    <LevelButton level={levelCompetence} onMinusClick={handleMinusLevelCompetenceButtonClick} onPlusClick={handlePlusLevelCompetenceButtonClick} onChange={onChangeLevelCompetence}/>
+                    <LevelButton setLevel={setLevelCompetence} min={0} max={10}/>
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Label as="div" className="text-center">Déchainement</Form.Label>
-                    <LevelButton level={levelDechainement} onMinusClick={handleMinusLevelDechainementButtonClick} onPlusClick={handlePlusLevelDechainementButtonClick} onChange={onChangeLevelDechainement}/>
+                    <LevelButton setLevel={setLevelDechainement} min={0} max={10}/>
                 </Form.Group>
             </Row>
         </Container>

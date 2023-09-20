@@ -10,38 +10,6 @@ const CreateArmeModal = ({listArmes}) =>{
     const [levelArme,setLevelArme] = useState(0);
     const [raffinement,setRaffinement] = useState(0);
 
-    function handleMinusLevelArmeButtonClick() {
-        if(levelArme>0){
-            setLevelArme(levelArme-1);
-        }
-    }
-
-    function handlePluslevelArmeButtonClick() {
-        if(levelArme<90){
-            setLevelArme(levelArme+1);
-        }
-    }
-
-    function onChangeLevelArme(e){
-        setLevelArme(parseInt(e.target.value));
-    }
-
-    function handleMinusRaffinementButtonClick() {
-        if(raffinement>0){
-            setRaffinement(raffinement-1);
-        }
-    }
-
-    function handlePlusRaffinementButtonClick() {
-        if(raffinement<5){
-            setRaffinement(raffinement+1);
-        }
-    }
-
-    function onChangeRaffinement(e){
-        setRaffinement(parseInt(e.target.value));
-    }
-
     function onArmeClick(armeChoisi) {
         setArmeChoisi(armeChoisi);
         setArmeChoosed(true);
@@ -72,11 +40,11 @@ const CreateArmeModal = ({listArmes}) =>{
                 <Row className="mt-3">
                     <Form.Group as={Col} className="me-3">
                         <div className="title text-center">Niveau</div>
-                        <LevelButton className="margin-top-19px" level={levelArme} onMinusClick={handleMinusLevelArmeButtonClick} onPlusClick={handlePluslevelArmeButtonClick} onChange={onChangeLevelArme}></LevelButton>
+                        <LevelButton className="margin-top-19px" setLevel={setLevelArme} min={0} max={90}></LevelButton>
                     </Form.Group>
                     <Form.Group as={Col} className="ms-3">
                         <div className="title text-center">Raffinement</div>
-                        <LevelButton className="margin-top-19px" level={raffinement} onMinusClick={handleMinusRaffinementButtonClick} onPlusClick={handlePlusRaffinementButtonClick} onChange={onChangeRaffinement}></LevelButton>
+                        <LevelButton className="margin-top-19px" setLevel={setRaffinement} min={0} max={5}></LevelButton>
                     </Form.Group>
                 </Row>
             </Container>

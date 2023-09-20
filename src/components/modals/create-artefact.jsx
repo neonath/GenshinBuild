@@ -7,6 +7,8 @@ import { ArtefactApiCall } from "../../apis/ArtefactAPI";
 const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [artefactLevel,setArtefactLevel] = useState(0);
 	const [mainStat,setMainStat] = useState();
+	const [choosedArtefactSet,setChoosedArtefactSet] = useState();
+	const [artefactRarity,setArtefactRarity] = useState(0);
 
 	const mainStatSablier = [
 		{ label: 'ATK%', value: 'atk_' },
@@ -107,25 +109,65 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		});
 	}
 
+	function getArtefactSetById(id){
+		return listArtefactSet.find((artefactSet) => artefactSet.entryPageId == id);
+	}
+
 	function onChangeArtefactSet(e) {
 		getArtefactMainStatByRarity();
+		setChoosedArtefactSet(getArtefactSetById(e.target.value));
+		console.log("choosedArtefactSet",choosedArtefactSet);
+	}
+
+	function handleOnMinusLevelClick() {
+		/*level max artefact par rareté:
+			rareté 1 et 2 niveau max 4
+			rareté 3 niveau max 12
+			rareté 4 niveau max 16
+			rareté 5 niveau max 20
+		*/
+	}
+
+	function handleOnPlusLevelClick() {
+
+	}
+
+	function onChangeLevel(e) {
+		setArtefactLevel(parseInt(e.target.value));
+	}
+
+	function handleOnMinusRarityClick() {
+		if(artefactRarity>choosedArtefactSet.minRarity){
+			setArtefactRarity(artefactRarity-1);
+		}
+	}
+
+	function handleOnPlusRarityClick() {
+		if(artefactRarity<choosedArtefactSet.maxRarity){
+			setArtefactRarity(artefactRarity+1);
+		}
+	}
+
+	function onChangeRarity(e) {
+		setArtefactRarity(parseInt(e.target.value));
 	}
 
 	return(
 		<Container>
 			<Row>
-				<Form.Select onChange={onChangeArtefactSet}>
+				<Form.Select as={Col} onChange={onChangeArtefactSet}>
 					<option>selectionner le set d'artefact</option>
 					{listArtefactSet.map((set,index) =>{
-						return <option key={index}>{set.name}</option>
+						return <option key={index} value={set.entryPageId}>{set.name}</option>
 					})}
 				</Form.Select>
+				<Col><LevelButton level={artefactRarity}/></Col>
 			</Row>
 			<Row className="title justify-content-center">
 				Niveau
 			</Row>
 			<Row>
-				<LevelButton/>
+				<LevelButton level={artefactLevel}/>
 			</Row>
 			<Row className="title justify-content-center">
 				Statistique principale
@@ -161,7 +203,8 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 
 CreateArtefactModal.propTypes = {
   listArtefactSet: PropTypes.shape({
-	map: PropTypes.func
+	map: PropTypes.func,
+	find: PropTypes.func
   }),
   slot: PropTypes.any
 }

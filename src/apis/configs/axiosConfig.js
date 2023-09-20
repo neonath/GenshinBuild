@@ -2,7 +2,7 @@ import { notification } from "antd";
 import axios from "axios";
 
 export const api = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "https://thawing-escarpment-68336-5b73faaf861a.herokuapp.com/",
 })
 
 //définition d'un gestionnaire d'erreurs personnalisé pour toutes les API
