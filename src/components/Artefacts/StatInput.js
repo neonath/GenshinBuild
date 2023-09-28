@@ -31,9 +31,7 @@ function StatInput({ nom, id, listStats, selectedStat, onStatChange }) {
 
 StatInput.propTypes = {
   id: PropTypes.any,
-  listStats: PropTypes.shape({
-    map: PropTypes.func
-  }),
+  listStats: PropTypes.array,
   nom: PropTypes.any,
   onStatChange: PropTypes.func,
   selectedStat: PropTypes.any

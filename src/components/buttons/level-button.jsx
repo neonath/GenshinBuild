@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { useState } from "react";
 import React from "react";
 import "../../styles/level-button.css";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 
 const LevelButton = ({className,setLevel,min,max}) =>{
 

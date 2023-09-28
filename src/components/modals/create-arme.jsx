@@ -54,9 +54,7 @@ const CreateArmeModal = ({listArmes}) =>{
 }
 
 CreateArmeModal.propTypes = {
-  listArmes: PropTypes.shape({
-    map: PropTypes.func
-  })
+  listArmes: PropTypes.array
 }
 
 export default CreateArmeModal;

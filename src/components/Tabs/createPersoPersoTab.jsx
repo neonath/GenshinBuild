@@ -94,9 +94,7 @@ const CreatePersoPersoTab = ({vision,listConstel}) =>{
 }
 
 CreatePersoPersoTab.propTypes = {
-  listConstel: PropTypes.shape({
-    map: PropTypes.func
-  }),
+  listConstel: PropTypes.array,
   vision: PropTypes.any
 }
 

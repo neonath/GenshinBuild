@@ -1,8 +1,12 @@
-import PropTypes, { func } from "prop-types"
+import PropTypes, { func,array } from "prop-types"
 import React, { useState } from "react";
-import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, InputGroup, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import LevelButton from "../buttons/level-button";
 import { ArtefactApiCall } from "../../apis/ArtefactAPI";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import useTilg from "tilg";
+import ArtefactRarityButtonList from "../buttons/ArtefactRarityList-button";
 
 const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [artefactLevel,setArtefactLevel] = useState(0);
@@ -115,41 +119,32 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 
 	function onChangeArtefactSet(e) {
 		getArtefactMainStatByRarity();
-		setChoosedArtefactSet(getArtefactSetById(e.target.value));
-		console.log("choosedArtefactSet",choosedArtefactSet);
+		const nextChoosedArtefactSet = getArtefactSetById(e.target.value);
+		setChoosedArtefactSet(nextChoosedArtefactSet);
+		console.log("choosedArtefactSet",nextChoosedArtefactSet);		
 	}
-
-	function handleOnMinusLevelClick() {
+	
+	const artefactLvlMax = function setArtefactLevelMax() {
 		/*level max artefact par rareté:
 			rareté 1 et 2 niveau max 4
 			rareté 3 niveau max 12
 			rareté 4 niveau max 16
 			rareté 5 niveau max 20
 		*/
-	}
-
-	function handleOnPlusLevelClick() {
-
-	}
-
-	function onChangeLevel(e) {
-		setArtefactLevel(parseInt(e.target.value));
-	}
-
-	function handleOnMinusRarityClick() {
-		if(artefactRarity>choosedArtefactSet.minRarity){
-			setArtefactRarity(artefactRarity-1);
+		switch (artefactRarity) {
+			case 1:
+			case 2:
+				return 4;
+			case 3:
+				return 12;
+			case 4:
+				return 16;
+			case 5:
+				return 20;
+		
+			default:
+				return 0;
 		}
-	}
-
-	function handleOnPlusRarityClick() {
-		if(artefactRarity<choosedArtefactSet.maxRarity){
-			setArtefactRarity(artefactRarity+1);
-		}
-	}
-
-	function onChangeRarity(e) {
-		setArtefactRarity(parseInt(e.target.value));
 	}
 
 	return(
@@ -161,13 +156,13 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 						return <option key={index} value={set.entryPageId}>{set.name}</option>
 					})}
 				</Form.Select>
-				<Col><LevelButton level={artefactRarity}/></Col>
 			</Row>
+			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet}/></Row>}
 			<Row className="title justify-content-center">
 				Niveau
 			</Row>
 			<Row>
-				<LevelButton level={artefactLevel}/>
+				<LevelButton setLevel={setArtefactLevel} min={0} max={artefactLvlMax}/>
 			</Row>
 			<Row className="title justify-content-center">
 				Statistique principale
@@ -177,7 +172,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 					<option>selectionner la statistique</option>
 					{selectOption}
 				</Form.Select>
-				<Col><LevelButton/></Col>
+				{/*<Col><LevelButton/></Col>*/}
 			</Row>
 			<Row className="title justify-content-center">
 				Statistiques secondaires
@@ -202,10 +197,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 }
 
 CreateArtefactModal.propTypes = {
-  listArtefactSet: PropTypes.shape({
-	map: PropTypes.func,
-	find: PropTypes.func
-  }),
+  listArtefactSet: PropTypes.array,
   slot: PropTypes.any
 }
 
