@@ -124,7 +124,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		console.log("choosedArtefactSet",nextChoosedArtefactSet);		
 	}
 	
-	const artefactLvlMax = function setArtefactLevelMax() {
+	function setArtefactLevelMax() {
 		/*level max artefact par rareté:
 			rareté 1 et 2 niveau max 4
 			rareté 3 niveau max 12
@@ -157,12 +157,12 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 					})}
 				</Form.Select>
 			</Row>
-			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet}/></Row>}
+			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet} setArtefactRarity={setArtefactRarity}/></Row>}
 			<Row className="title justify-content-center">
 				Niveau
 			</Row>
 			<Row>
-				<LevelButton setLevel={setArtefactLevel} min={0} max={artefactLvlMax}/>
+				<LevelButton setLevel={setArtefactLevel} min={0} max={setArtefactLevelMax()}/>
 			</Row>
 			<Row className="title justify-content-center">
 				Statistique principale
@@ -186,10 +186,12 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 				</Form.Select>
 				<InputGroup as={Col}>
 					<Form.Control type="number"></Form.Control>
-					<Button></Button>
-					<Button></Button>
-					<Button></Button>
-					<Button></Button>
+					<ToggleButtonGroup type="radio" name="artefactSubstat">
+						<ToggleButton id="artefactSubstatOpt1" value=""></ToggleButton>
+						<ToggleButton id="artefactSubstatOpt2" value=""></ToggleButton>
+						<ToggleButton id="artefactSubstatOpt3" value=""></ToggleButton>
+						<ToggleButton id="artefactSubstatOpt4" value=""></ToggleButton>
+					</ToggleButtonGroup>	
 				</InputGroup>
 			</Row>
 		</Container>
