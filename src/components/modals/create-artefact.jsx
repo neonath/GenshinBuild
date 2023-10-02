@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import useTilg from "tilg";
 import ArtefactRarityButtonList from "../buttons/ArtefactRarityList-button";
+import SubstatInput from "../Artefacts/SubstatInputList";
 
 const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [artefactLevel,setArtefactLevel] = useState(0);
@@ -147,6 +148,39 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		}
 	}
 
+	function getNbSubstatBase() {
+		switch (artefactRarity) {
+			case 1:
+			case 2:
+				return 0;
+			case 3:
+				return 1;
+			case 4:
+				return 2;
+			case 5:
+				return 3;
+		
+			default:
+				return 0;
+		}
+	}
+
+	const SubstatInputList = () => {
+		var substatInputList = [];
+		var nbSubstat = getNbSubstatBase();
+
+		function handleAddSubstatClick() {
+			nbSubstat++;
+			substatInputList.push(<SubstatInput key={nbSubstat} artefactRarity={artefactRarity}/>)
+		}
+
+		for (let index = 0; index < getNbSubstatBase(); index++) {
+			substatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
+		}
+		substatInputList.push(<Button onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>)
+		return substatInputList;
+	}
+
 	return(
 		<Container>
 			<Row>
@@ -177,23 +211,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 			<Row className="title justify-content-center">
 				Statistiques secondaires
 			</Row>
-			<Row>
-				<Form.Select as={Col}>
-					<option value="">selectionner la statistique</option>
-					{subStats.map((stat,index) =>{
-						return <option key={index} value={stat.value}>{stat.label}</option>
-					})}
-				</Form.Select>
-				<InputGroup as={Col}>
-					<Form.Control type="number"></Form.Control>
-					<ToggleButtonGroup type="radio" name="artefactSubstat">
-						<ToggleButton id="artefactSubstatOpt1" value=""></ToggleButton>
-						<ToggleButton id="artefactSubstatOpt2" value=""></ToggleButton>
-						<ToggleButton id="artefactSubstatOpt3" value=""></ToggleButton>
-						<ToggleButton id="artefactSubstatOpt4" value=""></ToggleButton>
-					</ToggleButtonGroup>	
-				</InputGroup>
-			</Row>
+			{SubstatInputList()}
 		</Container>
 	)
 }
