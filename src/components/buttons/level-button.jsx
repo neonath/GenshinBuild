@@ -30,7 +30,7 @@ const LevelButton = ({className,setLevel,min,max}) =>{
     return(
         <InputGroup className={className}>
             <Button className="button border-left" onClick={() => handleOnMinusClick()}>-</Button>
-            <Form.Control className="text" type="number" value={counter} onChange={onChange}/>
+            <Form.Control className="text" type="number" value={counter} onChange={onChange} min={min} max={max}/>
             <Button className="button border-right" onClick={() => handleOnPlusClick()}>+</Button>
         </InputGroup>
     )
