@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types"
-import { Col, Form, InputGroup, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
+import { Button, Col, Form, InputGroup, Row, ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 
 const SubstatInput = ({artefactRarity}) => {
     const subStats = [
@@ -29,12 +29,13 @@ const SubstatInput = ({artefactRarity}) => {
     ]
 
     const [substatType,setSubstatType] = useState();
-    const [rollOptions,setRollOptions] = useState();
+    const [rollOptions,setRollOptions] = useState(getRollOptionsValues(""));
+    const [choosedSubstatRoll,setChoosedSubstatRoll] = useState(0);
 
     function getNbRollOpt() {
         switch (artefactRarity) {
             case 1:
-                return 2
+                return 2;
 			case 2:
 				return 3;
 			case 3:
@@ -51,6 +52,7 @@ const SubstatInput = ({artefactRarity}) => {
         console.log("substatTypeSelect",e.target.value);
         setSubstatType(e.target.value);
         setRollOptions(getRollOptionsValues(e.target.value));
+        setChoosedSubstatRoll(0);
     }
     
     function getRollOptionsValues(substatType) {
@@ -68,11 +70,19 @@ const SubstatInput = ({artefactRarity}) => {
             troisième roll = x*0.8
             moins fort roll = x*0.7    
         */
+        
+        var subStatTypeValues;
+        var substatBaseRollValue;
         console.log("substatType",substatType);
-        const subStatTypeValues = subStatsValues.find((subStatTypeValues) => { return subStatTypeValues.stat == substatType});
-        const substatBaseRollValue = subStatTypeValues.values.find((rollValue,index) => {return index === artefactRarity-1});
+        if(substatType === ""){
+            substatBaseRollValue = 0;
+        }else{
+            subStatTypeValues = subStatsValues.find((subStatTypeValues) => { return subStatTypeValues.stat == substatType});
+            substatBaseRollValue = subStatTypeValues.values.find((rollValue,index) => {return index === artefactRarity-1});
+        }
         console.log("subStatTypeValues",subStatTypeValues);
         console.log("substatBaseRollValue",substatBaseRollValue);
+        
         switch (artefactRarity) {
             case 1:
                 return [substatBaseRollValue*0.7,substatBaseRollValue];
@@ -104,13 +114,10 @@ const SubstatInput = ({artefactRarity}) => {
                 })}
             </Form.Select>
             <InputGroup as={Col}>
-                <Form.Control type="number" readOnly></Form.Control>
-                <ToggleButtonGroup type="radio" name="artefactSubstat">
-                    {/*rollList*/}
-                    {rollOptions == undefined? rollList : rollOptions.map((rollOption,index) => {
-                        return <ToggleButton key={index} id={"artefactSubstatOpt"+index} value={rollOption}>{rollOption.toFixed(2)}</ToggleButton>;
-                    })}
-                </ToggleButtonGroup>
+                <Form.Control type="number" readOnly value={choosedSubstatRoll === undefined? choosedSubstatRoll:choosedSubstatRoll.toFixed(2)} onChange={e => setChoosedSubstatRoll(e.target.value)}></Form.Control>
+                {rollOptions == undefined? rollList : rollOptions.map((rollOption,index) => {
+                    return <Button key={index} id={"artefactSubstatOpt"+index} value={rollOption} onClick={() => setChoosedSubstatRoll(choosedSubstatRoll+rollOption)}>{rollOption.toFixed(2)}</Button>;
+                })}
             </InputGroup>
         </Row>
     );
