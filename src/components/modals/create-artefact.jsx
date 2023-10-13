@@ -8,13 +8,15 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import useTilg from "tilg";
 import ArtefactRarityButtonList from "../buttons/ArtefactRarityList-button";
 import SubstatInput from "../Artefacts/SubstatInput";
+import SubstatInputList from "../Artefacts/SubstatInputList";
 
 const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [artefactLevel,setArtefactLevel] = useState(0);
 	const [mainStat,setMainStat] = useState();
 	const [choosedArtefactSet,setChoosedArtefactSet] = useState();
 	const [artefactRarity,setArtefactRarity] = useState(0);
-	const [substatInputList,setSubstatListInput] = useState();
+	const [substatInputList,setSubstatListInput] = useState([]);
+	const [nbSubstat,setNbSubstat] = useState(-1);
 
 	const mainStatSablier = [
 		{ label: 'ATK%', value: 'atk_' },
@@ -132,7 +134,6 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 			rareté 4 niveau max 16
 			rareté 5 niveau max 20
 		*/
-		getSubstatInputList();
 		switch (artefactRarity) {
 			case 1:
 			case 2:
@@ -166,25 +167,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		}
 	}
 
-	const getSubstatInputList = () => {
-		var substatInputList = [];
-		var nbSubstat = getNbSubstatBase();
-
-		function handleAddSubstatClick() {
-			nbSubstat++;
-			substatInputList.splice(substatInputList.length-1,0,<SubstatInput key={nbSubstat} artefactRarity={artefactRarity}/>)
-			console.log("subtatInputList",substatInputList);
-			setSubstatListInput(substatInputList);
-		}
-
-		for (let index = 0; index < getNbSubstatBase(); index++) {
-			substatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
-		}
-		substatInputList.push(<Button key="button" onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>)
-		console.log("substatInputList",substatInputList);
-		//setSubstatListInput(substatInputList);
-		return substatInputList;
-	}
+	
 
 	return(
 		<Container>
@@ -216,7 +199,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 			<Row className="title justify-content-center">
 				Statistiques secondaires
 			</Row>
-			{getSubstatInputList()}
+			<SubstatInputList artefactRarity={artefactRarity} nbSubstatBase={getNbSubstatBase()}/>
 		</Container>
 	)
 }

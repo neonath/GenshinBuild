@@ -73,15 +73,15 @@ const SubstatInput = ({artefactRarity}) => {
         
         var subStatTypeValues;
         var substatBaseRollValue;
-        console.log("substatType",substatType);
+        //console.log("substatType",substatType);
         if(substatType === ""){
             substatBaseRollValue = 0;
         }else{
             subStatTypeValues = subStatsValues.find((subStatTypeValues) => { return subStatTypeValues.stat == substatType});
             substatBaseRollValue = subStatTypeValues.values.find((rollValue,index) => {return index === artefactRarity-1});
         }
-        console.log("subStatTypeValues",subStatTypeValues);
-        console.log("substatBaseRollValue",substatBaseRollValue);
+        //console.log("subStatTypeValues",subStatTypeValues);
+        //console.log("substatBaseRollValue",substatBaseRollValue);
         
         switch (artefactRarity) {
             case 1:

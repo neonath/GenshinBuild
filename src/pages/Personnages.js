@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { apiCall } from "../apis/api";
 import PageLayout from "../components/page-layout";
 import { CharacterApiCall } from "../apis/CharacterAPI";
@@ -25,6 +25,10 @@ export default function Personnages() {
 
   const handleModalCreatePersoClose = () => setModalCreatePersoShow(false);
   const handleModalCreatePersoShow = () => setModalCreatePersoShow(true);
+
+  useEffect(() => {
+    
+  })
 
   function onGetAllPersonnagesClick() {
     apiCall.getAllPersonnages(false).then((responseData) =>{
