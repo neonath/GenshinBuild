@@ -15,8 +15,10 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [mainStat,setMainStat] = useState();
 	const [choosedArtefactSet,setChoosedArtefactSet] = useState();
 	const [artefactRarity,setArtefactRarity] = useState(0);
+	//console.log("nextSubstatInputList",nextSubstatInputList);
 	const [substatInputList,setSubstatListInput] = useState([]);
-	const [nbSubstat,setNbSubstat] = useState(-1);
+	console.log("substatInputList",substatInputList);
+	const [nbSubstat,setNbSubstat] = useState(getNbSubstatBase());
 
 	const mainStatSablier = [
 		{ label: 'ATK%', value: 'atk_' },
@@ -126,6 +128,28 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		setChoosedArtefactSet(nextChoosedArtefactSet);
 		console.log("choosedArtefactSet",nextChoosedArtefactSet);
 	}
+
+	function getSubstatInputList(artefactRarity,nbSubstat){
+		console.log("nbSubstat dans getSubstatInputList",nbSubstat);
+		var newSubstatInputList = [];
+		for (let index = 0; index < nbSubstat; index++) {
+			//console.log("SubstatInputList index",index);
+			newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
+		}
+		console.log("newSubstatInputList a la fin de getSubstatInputList", newSubstatInputList);
+		return newSubstatInputList;
+	}
+
+	function handleAddSubstatClick() {
+		console.log("handleAddSubstatClick: nbSubstat before increment",nbSubstat);
+		var nextNbSubstat = nbSubstat+1;
+		setNbSubstat(nextNbSubstat);
+		console.log("handleAddSubstatClick: nextNbSubstat after increment",nextNbSubstat);
+		console.log("handleAddSubstatClick: subtatInputList",substatInputList);
+		//const nextSubstatInputList = substatInputList.concat(<SubstatInput key={nextNbSubstat} artefactRarity={artefactRarity}/>);
+		//console.log("handleAddSubstatClick: nextSubstatInputList",nextSubstatInputList);
+		setSubstatListInput(substatInputList => [...substatInputList,<SubstatInput key={substatInputList.length} artefactRarity={artefactRarity}/>]);
+	}
 	
 	function setArtefactLevelMax() {
 		/*level max artefact par rareté:
@@ -154,20 +178,22 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		switch (artefactRarity) {
 			case 1:
 			case 2:
+				console.log("nbSubstat 0");
 				return 0;
 			case 3:
+				console.log("nbSubstat 1");
 				return 1;
 			case 4:
+				console.log("nbSubstat 2");
 				return 2;
 			case 5:
+				console.log("nbSubstat 3");
 				return 3;
-		
 			default:
-				return 0;
+				console.log("nbSubstat -1");
+				return -1;
 		}
 	}
-
-	
 
 	return(
 		<Container>
@@ -179,7 +205,7 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 					})}
 				</Form.Select>
 			</Row>
-			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet} setArtefactRarity={setArtefactRarity}/></Row>}
+			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet} setArtefactRarity={setArtefactRarity} setSubstatInputList={setSubstatListInput}/></Row>}
 			<Row className="title justify-content-center">
 				Niveau
 			</Row>
@@ -199,7 +225,10 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 			<Row className="title justify-content-center">
 				Statistiques secondaires
 			</Row>
-			<SubstatInputList artefactRarity={artefactRarity} nbSubstatBase={getNbSubstatBase()}/>
+			{/* <SubstatInputList artefactRarity={artefactRarity} nbSubstatBase={getNbSubstatBase()}/> */}
+			{/* {nbSubstat === -1? nextSubstatInputList : substatInputList} */}
+			{substatInputList.map((SubstatInput) => {return SubstatInput})}
+			<Button onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>
 		</Container>
 	)
 }

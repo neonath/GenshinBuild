@@ -1,10 +1,30 @@
+import PropTypes from "prop-types"
 import React, { useState } from "react";
 import SubstatInput from "./SubstatInput";
 import { Button } from "react-bootstrap";
+import useTilg from "tilg";
+
+function getSubstatInputList(artefactRarity,nbSubstat){
+    console.log("nbSubstat dans getSubstatInputList",nbSubstat);
+    var newSubstatInputList = [];
+    for (let index = 0; index < nbSubstat; index++) {
+        //console.log("SubstatInputList index",index);
+        newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
+    }
+    console.log("substatInputList a la fin de getSubstatInputList", newSubstatInputList);
+    return newSubstatInputList;
+}
 
 const SubstatInputList = ({artefactRarity,nbSubstatBase}) => {
-    const [substatInputList, setSubstatListInput] = useState([]);
-    const [nbSubstat,setNbSubstat] = useState(0);
+    const nextSubstatInputList = getSubstatInputList(artefactRarity,nbSubstatBase);
+    const [substatInputList,setSubstatListInput] = useState(nextSubstatInputList);
+    const [nbSubstat,setNbSubstat] = useState(nbSubstatBase);
+    setSubstatListInput(nextSubstatInputList);
+
+    useTilg();
+
+    console.log("artefactRarity",artefactRarity,"nbSubstat",nbSubstat,"nbSubstatBase",nbSubstatBase);
+    console.log("substatInputList",substatInputList,"nextSubstatInputList",nextSubstatInputList);
 
     function handleAddSubstatClick() {
 		console.log("handleAddSubstatClick");
@@ -12,28 +32,22 @@ const SubstatInputList = ({artefactRarity,nbSubstatBase}) => {
 		var nextNbSubstat = nbSubstat+1;
 		setNbSubstat(nextNbSubstat);
 		console.log("nbSubstat after increment",nbSubstat);
-		var newSubstatInputList = Array.from(substatInputList);
-		console.log("newSubstatInputList",newSubstatInputList);
-		newSubstatInputList.splice(newSubstatInputList.length-1,0,<SubstatInput key={nbSubstat} artefactRarity={artefactRarity}/>)
+		const nextSubstatInputList = substatInputList.concat(<SubstatInput key={nextNbSubstat} artefactRarity={artefactRarity}/>);
 		console.log("subtatInputList",substatInputList);
-		setSubstatListInput(newSubstatInputList);
+		setSubstatListInput(nextSubstatInputList);
 	}
 
-    console.log("getSubstatInputList")
-    console.log("artefactRarity",artefactRarity);
-    console.log("nbSubstat",nbSubstat);
-    console.log("nbSubstat",nbSubstat);
-    setNbSubstat(nbSubstatBase);
-    var newSubstatInputList = [];
-    for (let index = 0; index < nbSubstat; index++) {
-        newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
-    }
-    newSubstatInputList.push(<Button key="button" onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>)
-    console.log("newSubstatInputList",newSubstatInputList);
-    console.log("substatInputList",substatInputList);
-    setSubstatListInput(newSubstatInputList);
+    return (
+        <>
+            {substatInputList}
+            <Button onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>
+        </>
+        )
+}
 
-    return substatInputList;
+SubstatInputList.propTypes = {
+  artefactRarity: PropTypes.any,
+  nbSubstatBase: PropTypes.any
 }
 
 export default SubstatInputList;

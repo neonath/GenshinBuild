@@ -4,13 +4,49 @@ import PropTypes from "prop-types"
 import React from "react";
 import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import useTilg from "tilg";
+import SubstatInput from "../Artefacts/SubstatInput";
 
-const ArtefactRarityButtonList = ({artefactSet,setArtefactRarity}) =>{
+const ArtefactRarityButtonList = ({artefactSet,setArtefactRarity,setSubstatInputList}) =>{
     
   function onArtefactRarityChange(artefactRarity) {
     //console.log("onArtefactRarityChange value:",value);
     setArtefactRarity(artefactRarity);
+    getSubstatInputList(artefactRarity);
   }
+
+  function getSubstatInputList(artefactRarity){
+    console.log("artefactRarity",artefactRarity);
+    var nbSubstat = getNbSubstatBase(artefactRarity);
+		console.log("nbSubstat dans getSubstatInputList",nbSubstat);
+		var newSubstatInputList = [];
+		for (let index = 0; index < nbSubstat; index++) {
+			//console.log("SubstatInputList index",index);
+			newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
+		}
+		console.log("newSubstatInputList a la fin de getSubstatInputList", newSubstatInputList);
+		setSubstatInputList(newSubstatInputList);
+	}
+
+  function getNbSubstatBase(artefactRarity) {
+		switch (artefactRarity) {
+			case 1:
+			case 2:
+				console.log("nbSubstat 0");
+				return 0;
+			case 3:
+				console.log("nbSubstat 1");
+				return 1;
+			case 4:
+				console.log("nbSubstat 2");
+				return 2;
+			case 5:
+				console.log("nbSubstat 3");
+				return 3;
+			default:
+				console.log("nbSubstat -1");
+				return -1;
+		}
+	}
 
   var artefactRarityButtonList = [];
         for (let index = artefactSet.minRarity; index <= artefactSet.maxRarity; index++) {
@@ -30,7 +66,9 @@ ArtefactRarityButtonList.propTypes = {
     maxRarity: PropTypes.number,
     minRarity: PropTypes.number
   }),
-  setArtefactRarity: PropTypes.func
+  setArtefactRarity: PropTypes.func,
+  nbSubstatBase: PropTypes.number,
+  setSubstatInputList: PropTypes.func
 }
 
 export default ArtefactRarityButtonList;
