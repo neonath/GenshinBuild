@@ -97,6 +97,10 @@
   display: flex;
 }
 
+.cursor-pointer{
+  cursor: pointer;
+}
+
 .padding-vertical-1rem{
   padding-left: 1rem;
   padding-right: 1rem;

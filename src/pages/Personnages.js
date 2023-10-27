@@ -26,10 +26,6 @@ export default function Personnages() {
   const handleModalCreatePersoClose = () => setModalCreatePersoShow(false);
   const handleModalCreatePersoShow = () => setModalCreatePersoShow(true);
 
-  useEffect(() => {
-    
-  })
-
   function onGetAllPersonnagesClick() {
     apiCall.getAllPersonnages(false).then((responseData) =>{
       console.log("responseData",responseData);
