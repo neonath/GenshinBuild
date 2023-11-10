@@ -43,7 +43,7 @@ const CreatePersoArtefactTab = () => {
                 <Avatar size={65} icon={<Diademme/>} className="cursor-pointer" onClick={() => handleSlotAvatarClick("circlet")}/>
             </Row>
             {slotAvatarClicked &&
-                <Row>
+                <Row className="margin-top-21px">
                     <Col><Button onClick={() => onAddNewArtefactClick()}>Ajouter un nouvel artefact</Button></Col>
                     <Col className="align-self-center text-center">ou</Col>
                     <Col><Button>Selectionner un artefact dans l'inventaire</Button></Col>

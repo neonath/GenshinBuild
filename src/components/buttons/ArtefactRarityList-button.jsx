@@ -6,17 +6,26 @@ import { ToggleButton, ToggleButtonGroup } from "react-bootstrap";
 import useTilg from "tilg";
 import SubstatInput from "../Artefacts/SubstatInput";
 
-const ArtefactRarityButtonList = ({artefactSet,setArtefactRarity,setSubstatInputList}) =>{
-    
-  function onArtefactRarityChange(artefactRarity) {
-    //console.log("onArtefactRarityChange value:",value);
-    setArtefactRarity(artefactRarity);
-    getSubstatInputList(artefactRarity);
-  }
+const ArtefactRarityButtonList = ({artefactLevel,artefactSet,setArtefactRarity,setSubstatInputList,setNbSubstat}) =>{
+	
+	function onArtefactRarityChange(artefactRarity) {
+		//console.log("onArtefactRarityChange value:",value);
+		setArtefactRarity(artefactRarity);
+		getSubstatInputList(artefactRarity);
+	}
 
-  function getSubstatInputList(artefactRarity){
-    console.log("artefactRarity",artefactRarity);
-    var nbSubstat = getNbSubstatBase(artefactRarity);
+	function getSubstatInputList(artefactRarity){
+		console.log("artefactRarity",artefactRarity);
+		var nbSubstat = getNbSubstatBase(artefactRarity);
+		if(artefactLevel%4 == 0){
+			if(nbSubstat+artefactLevel/4 < 4){
+				nbSubstat = nbSubstat+artefactLevel/4;
+			}else{
+				nbSubstat = 4;
+			}
+		}
+		setNbSubstat(nbSubstat);
+
 		console.log("nbSubstat dans getSubstatInputList",nbSubstat);
 		var newSubstatInputList = [];
 		for (let index = 0; index < nbSubstat; index++) {
@@ -27,48 +36,50 @@ const ArtefactRarityButtonList = ({artefactSet,setArtefactRarity,setSubstatInput
 		setSubstatInputList(newSubstatInputList);
 	}
 
-  function getNbSubstatBase(artefactRarity) {
+	function getNbSubstatBase(artefactRarity) {
 		switch (artefactRarity) {
 			case 1:
 			case 2:
-				console.log("nbSubstat 0");
+				// console.log("nbSubstat 0");
 				return 0;
 			case 3:
-				console.log("nbSubstat 1");
+				//console.log("nbSubstat 1");
 				return 1;
 			case 4:
-				console.log("nbSubstat 2");
+				//console.log("nbSubstat 2");
 				return 2;
 			case 5:
-				console.log("nbSubstat 3");
+				//console.log("nbSubstat 3");
 				return 3;
 			default:
-				console.log("nbSubstat -1");
+				//console.log("nbSubstat -1");
 				return -1;
 		}
 	}
 
-  var artefactRarityButtonList = [];
-        for (let index = artefactSet.minRarity; index <= artefactSet.maxRarity; index++) {
-            var iconList = [];
-            for(let index2 = 0; index2 < index;index2++){
-                iconList.push(<FontAwesomeIcon key={index2} icon={faStar} className="text-warning" />);
-            }
-            artefactRarityButtonList.push(<ToggleButton className={"bg-rarity-"+index+" border-0"} key={index} id={"artefactRarity"+index} value={index}>{iconList}</ToggleButton>);
-        }
-        //useTilg()`iconList: ${iconList}`
-        //useTilg()`artefactRarityButtonList: ${artefactRarityButtonList}`
-    return <ToggleButtonGroup type="radio" name="artefactRarityButton" onChange={onArtefactRarityChange}>{artefactRarityButtonList}</ToggleButtonGroup>;
+	var artefactRarityButtonList = [];
+	for (let index = artefactSet.minRarity; index <= artefactSet.maxRarity; index++) {
+		var iconList = [];
+		for(let index2 = 0; index2 < index;index2++){
+			iconList.push(<FontAwesomeIcon key={index2} icon={faStar} className="text-warning" />);
+		}
+		artefactRarityButtonList.push(<ToggleButton className={"bg-rarity-"+index+" border-0"} key={index} id={"artefactRarity"+index} value={index}>{iconList}</ToggleButton>);
+	}
+	//useTilg()`iconList: ${iconList}`
+	//useTilg()`artefactRarityButtonList: ${artefactRarityButtonList}`
+	return <ToggleButtonGroup type="radio" name="artefactRarityButton" onChange={onArtefactRarityChange}>{artefactRarityButtonList}</ToggleButtonGroup>;
 }
 
 ArtefactRarityButtonList.propTypes = {
-  artefactSet: PropTypes.shape({
-    maxRarity: PropTypes.number,
-    minRarity: PropTypes.number
-  }),
-  setArtefactRarity: PropTypes.func,
-  nbSubstatBase: PropTypes.number,
-  setSubstatInputList: PropTypes.func
+	artefactLevel: PropTypes.number,
+	artefactSet: PropTypes.shape({
+		maxRarity: PropTypes.number,
+		minRarity: PropTypes.number
+	}),
+	setArtefactRarity: PropTypes.func,
+	nbSubstatBase: PropTypes.number,
+	setSubstatInputList: PropTypes.func,
+	setNbSubstat: PropTypes.func
 }
 
 export default ArtefactRarityButtonList;

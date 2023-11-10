@@ -19,6 +19,18 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	const [substatInputList,setSubstatListInput] = useState([]);
 	console.log("substatInputList",substatInputList);
 	const [nbSubstat,setNbSubstat] = useState(getNbSubstatBase());
+	const [substatList,setSubstatList] = useState([
+		{ label: 'ATK', value: 'atk' },
+		{ label: 'DEF', value: 'def' },
+		{ label: 'PV', value: 'hp' },
+		{ label: 'ATK%', value: 'atk_' },
+		{ label: 'DEF%', value: 'def_' },
+		{ label: 'PV%', value: 'hp_' },
+		{ label: 'Taux critique', value: 'critRate_' },
+		{ label: 'DGT Critique %', value: 'critDMG_' },
+		{ label: 'Maitrise elementaire', value: 'eleMas' },
+		{ label: "Recharge d'énergie", value: 'enerRech_' },
+		])
 
 	const mainStatSablier = [
 		{ label: 'ATK%', value: 'atk_' },
@@ -123,22 +135,30 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 		return listArtefactSet.find((artefactSet) => artefactSet.entryPageId == id);
 	}
 
-	function onChangeArtefactSet(e) {
+	function handleChangeArtefactSet(e) {
 		const nextChoosedArtefactSet = getArtefactSetById(e.target.value);
 		setChoosedArtefactSet(nextChoosedArtefactSet);
 		console.log("choosedArtefactSet",nextChoosedArtefactSet);
 	}
 
-	function getSubstatInputList(artefactRarity,nbSubstat){
-		console.log("nbSubstat dans getSubstatInputList",nbSubstat);
-		var newSubstatInputList = [];
-		for (let index = 0; index < nbSubstat; index++) {
-			//console.log("SubstatInputList index",index);
-			newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
-		}
-		console.log("newSubstatInputList a la fin de getSubstatInputList", newSubstatInputList);
-		return newSubstatInputList;
+	function handleMainStatSelect(e){
+		const selectedMainStat = e.target.value;
+		const selectedMainStatIndex = subStats.findIndex((stat) => stat === selectedMainStat);
+		var newSubstatList = [...substatList];
+		newSubstatList.splice(selectedMainStatIndex,1);
+		setSubstatList(newSubstatList);
 	}
+
+	// function getSubstatInputList(artefactRarity,nbSubstat){
+	// 	console.log("nbSubstat dans getSubstatInputList",nbSubstat);
+	// 	var newSubstatInputList = [];
+	// 	for (let index = 0; index < nbSubstat; index++) {
+	// 		//console.log("SubstatInputList index",index);
+	// 		newSubstatInputList.push(<SubstatInput key={index} artefactRarity={artefactRarity}/>);
+	// 	}
+	// 	console.log("newSubstatInputList a la fin de getSubstatInputList", newSubstatInputList);
+	// 	return newSubstatInputList;
+	// }
 
 	function handleAddSubstatClick() {
 		console.log("handleAddSubstatClick: nbSubstat before increment",nbSubstat);
@@ -198,37 +218,37 @@ const CreateArtefactModal = ({listArtefactSet,slot}) =>{
 	return(
 		<Container>
 			<Row>
-				<Form.Select as={Col} onChange={onChangeArtefactSet}>
+				<Form.Select as={Col} onChange={handleChangeArtefactSet}>
 					<option>selectionner le set d'artefact</option>
 					{listArtefactSet.map((set,index) =>{
 						return <option key={index} value={set.entryPageId}>{set.name}</option>
 					})}
 				</Form.Select>
 			</Row>
-			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactSet= {choosedArtefactSet} setArtefactRarity={setArtefactRarity} setSubstatInputList={setSubstatListInput}/></Row>}
-			<Row className="title justify-content-center">
+			{choosedArtefactSet && <Row><ArtefactRarityButtonList artefactLevel={artefactLevel} artefactSet= {choosedArtefactSet} setArtefactRarity={setArtefactRarity} setSubstatInputList={setSubstatListInput} setNbSubstat={setNbSubstat}/></Row>}
+			<Row className="title justify-content-center margin-top-25px">
 				Niveau
 			</Row>
-			<Row>
+			<Row className="margin-top-25px">
 				<LevelButton setLevel={setArtefactLevel} min={0} max={setArtefactLevelMax()}/>
 			</Row>
-			<Row className="title justify-content-center">
+			<Row className="title justify-content-center margin-top-25px">
 				Statistique principale
 			</Row>
-			<Row>
-				<Form.Select as={Col}>
+			<Row className="margin-top-25px">
+				<Form.Select as={Col} onChange={handleMainStatSelect}>
 					<option>selectionner la statistique</option>
 					{selectOption}
 				</Form.Select>
 				{/*<Col><LevelButton/></Col>*/}
 			</Row>
-			<Row className="title justify-content-center">
+			<Row className="title justify-content-center margin-bottom-25px margin-top-25px">
 				Statistiques secondaires
 			</Row>
 			{/* <SubstatInputList artefactRarity={artefactRarity} nbSubstatBase={getNbSubstatBase()}/> */}
 			{/* {nbSubstat === -1? nextSubstatInputList : substatInputList} */}
 			{substatInputList.map((SubstatInput) => {return SubstatInput})}
-			<Button onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>
+			<Button className={nbSubstat >=4 ? "d-none":""} onClick={() => handleAddSubstatClick()}>ajouter une statistique secondaire</Button>
 		</Container>
 	)
 }
